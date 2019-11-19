@@ -19,21 +19,32 @@
 .courses-list-item .description {
     width: 801px;
     float: left;
+    font-size: 14px;
+    line-height: 1.71;
+    color: #525462;    
 }
 
 .courses-list-item .header .title {
     height: 30px;
     font-size: 24px;
-    /* font-weight: 600;
-    line-height: 1.25; */
+    font-weight: 600;
+    line-height: 1.25;
     color: #2c2f3c;
     float: left
 }
 
-.courses-list-item .header .date,
-.courses-list-item .header .duration {
+.courses-list-item .creationDate,
+.courses-list-item .duration {
     float: right;
     padding: 10px;
+    color: #b9bdce;
+    font-size: 12px;
+}
+
+.courses-list-item .creationDate div,
+.courses-list-item .duration div {
+    padding-left: 8px;
+    display: inline;
 }
 
 .courses-list-item .edit-course,
@@ -46,11 +57,23 @@
 .courses-list-item .btn {
     width: 75px;
     height: 24px;
-    padding-left: 30px;
+    padding-left: 24px;
     border-radius: 3px;
     background-color: #30b6dd;
     border: none;
     color: white;
     font-size: 12px;
     cursor: pointer;
+}
+
+.courses-list-item .wrapper {
+    position: relative;
+}
+
+.courses-list-item .edit-course fa-icon,
+.courses-list-item .delete-course fa-icon {
+    position: absolute;
+    top: 3px;
+    left: 12px;
+    color: white;
 }

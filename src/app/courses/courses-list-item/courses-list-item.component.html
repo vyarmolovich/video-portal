@@ -3,11 +3,13 @@
         <div class="title">
             {{item.title}}
         </div>
-        <div class="date">
-                {{item.creationDate}}
+        <div class="creationDate">
+            <fa-icon [icon]="faCalendarAlt" size="lg"></fa-icon>
+            <div>{{item.creationDate}}</div>
         </div>
         <div class="duration">
-            {{item.duration}}
+            <fa-icon [icon]="faClock" flip="horizontal" size="lg"></fa-icon>
+            <div>{{item.duration}}</div>
         </div>
     </div>
     <div class="description">
@@ -15,13 +17,13 @@
     </div>
     <div class="delete-course">
             <div class="wrapper">
-                <!-- <fa-icon [icon]="faPlus" size="sm"></fa-icon> -->
-                <button type="button" class="btn">Delete</button>
+                <fa-icon [icon]="faTrash" size="sm"></fa-icon>
+                <button (click)="deleteCourse()" type="button" class="btn">Delete</button>
             </div>
     </div>
     <div class="edit-course">
             <div class="wrapper">
-                <!-- <fa-icon [icon]="faPlus" size="sm"></fa-icon> -->
+                <fa-icon [icon]="faPen" size="sm"></fa-icon>
                 <button type="button" class="btn">Edit</button>
             </div>
     </div>

@@ -11,9 +11,14 @@ export class CoursesHeaderComponent implements OnInit {
   faSearch = faSearch;
   faPlus = faPlus;
 
+  search : string = '';
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  searchCourses() {
+    console.log('Try to search courses by keyword: ' + this.search);
+  }
 }
