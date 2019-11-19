@@ -1,0 +1,56 @@
+.courses-list-item {
+    width: 1062px;
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+    margin-left: 85px;
+    margin-bottom: 24px;
+    padding: 24px;
+    clear: both;
+    display: table;
+}
+
+.courses-list-item .header {
+    width: 801px;
+    clear: both;
+    display: table;
+} 
+
+.courses-list-item .description {
+    width: 801px;
+    float: left;
+}
+
+.courses-list-item .header .title {
+    height: 30px;
+    font-size: 24px;
+    /* font-weight: 600;
+    line-height: 1.25; */
+    color: #2c2f3c;
+    float: left
+}
+
+.courses-list-item .header .date,
+.courses-list-item .header .duration {
+    float: right;
+    padding: 10px;
+}
+
+.courses-list-item .edit-course,
+.courses-list-item .delete-course {
+    float: right;
+    padding-left: 12px;
+    padding-top: 20px;
+}
+
+.courses-list-item .btn {
+    width: 75px;
+    height: 24px;
+    padding-left: 30px;
+    border-radius: 3px;
+    background-color: #30b6dd;
+    border: none;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}

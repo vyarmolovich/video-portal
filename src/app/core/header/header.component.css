@@ -1,0 +1,20 @@
+.header {
+    width: 1280px;
+    height: 64px;
+    background-color: #414452;
+}
+
+.header .btn {
+    border: none;
+    color: white;
+    background-color: #414452;
+    padding: 23px 20px;
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+    float: right;
+}
+
+fa-icon {
+    padding: 8px;
+}
