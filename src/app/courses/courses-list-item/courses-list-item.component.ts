@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CoursesListItem } from './courses-list-item-model';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
@@ -11,7 +11,11 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./courses-list-item.component.css']
 })
 export class CoursesListItemComponent implements OnInit {
-  @Input() item: CoursesListItem;
+  @Input() 
+  item: CoursesListItem;
+
+  @Output() 
+  delete: EventEmitter<number> = new EventEmitter<number>();
 
   faClock = faClock;
   faCalendarAlt = faCalendarAlt;
@@ -24,6 +28,6 @@ export class CoursesListItemComponent implements OnInit {
   }
 
   deleteCourse() {
-    
+    this.delete.emit(this.item.id);
   }
 }
