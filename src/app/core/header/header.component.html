@@ -1,4 +1,5 @@
-<vp-logo></vp-logo>
-<h2>VIDEO COURSE</h2>
-{{user.firstName}}
-<button type="button">log off</button>
+<div class='header'>
+    <vp-logo></vp-logo>
+    <button class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
+    <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{user.firstName}}</button>
+</div>

@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    font-family: Arial;
+}
+
+vp-app-root {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1280px;
+}

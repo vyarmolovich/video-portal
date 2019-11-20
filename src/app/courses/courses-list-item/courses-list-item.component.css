@@ -1,0 +1,79 @@
+.courses-list-item {
+    width: 1062px;
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+    margin-left: 85px;
+    margin-bottom: 24px;
+    padding: 24px;
+    clear: both;
+    display: table;
+}
+
+.courses-list-item .header {
+    width: 801px;
+    clear: both;
+    display: table;
+} 
+
+.courses-list-item .description {
+    width: 801px;
+    float: left;
+    font-size: 14px;
+    line-height: 1.71;
+    color: #525462;    
+}
+
+.courses-list-item .header .title {
+    height: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #2c2f3c;
+    float: left
+}
+
+.courses-list-item .creationDate,
+.courses-list-item .duration {
+    float: right;
+    padding: 10px;
+    color: #b9bdce;
+    font-size: 12px;
+}
+
+.courses-list-item .creationDate div,
+.courses-list-item .duration div {
+    padding-left: 8px;
+    display: inline;
+}
+
+.courses-list-item .edit-course,
+.courses-list-item .delete-course {
+    float: right;
+    padding-left: 12px;
+    padding-top: 20px;
+}
+
+.courses-list-item .btn {
+    width: 75px;
+    height: 24px;
+    padding-left: 24px;
+    border-radius: 3px;
+    background-color: #30b6dd;
+    border: none;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.courses-list-item .wrapper {
+    position: relative;
+}
+
+.courses-list-item .edit-course fa-icon,
+.courses-list-item .delete-course fa-icon {
+    position: absolute;
+    top: 3px;
+    left: 12px;
+    color: white;
+}

@@ -1,0 +1,71 @@
+.courses-header {
+    width: 1110px;
+    margin-left: 85px;
+    padding-top: 24px;
+    margin-bottom: 72px;
+}
+
+.search-course {
+    margin-bottom: 24px;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.search-course .wrapper {
+    float: left;
+}
+
+.search-course fa-icon { 
+    position: absolute; 
+    top: 12px; 
+    left: 14px; 
+    color: #9ca3aa;
+}
+
+.search-course .wrapper input {
+    width: 360px;
+    height: 48px;
+    border-radius: 3px;
+    border: solid 1px #d9dbe3;
+    background-color: #ffffff;
+    padding-left: 43px;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: 0.22px;
+}
+.search-course .btn {
+    width: 100px;
+    height: 48px;
+    border-radius: 3px;
+    background-color: #9bc837;
+    border: none;
+    color: white;
+    font-size: 18px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.add-course {
+    float: right;
+}
+
+.add-course .btn {
+    width: 138px;
+    height: 36px;
+    padding-left: 28px;
+    border-radius: 3px;
+    background-color: #30b6dd;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.add-course fa-icon { 
+    position: absolute; 
+    top: 10px; 
+    left: 18px; 
+    color: white;
+}

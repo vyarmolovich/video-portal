@@ -1,0 +1,18 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 1280px;
+    height: 64px;
+    position: fixed;
+    background-color: #414452;
+    text-align: right;
+}
+
+.footer .copyright {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.71;
+    color: #c0c3ce;
+    padding-top: 21px;
+    padding-right: 85px;
+}
