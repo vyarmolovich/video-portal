@@ -10,8 +10,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class CoursesHeaderComponent implements OnInit {
   faSearch = faSearch;
   faPlus = faPlus;
-
-  search : string = '';
+  search = '';
 
   constructor() { }
 

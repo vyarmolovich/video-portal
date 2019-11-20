@@ -11,10 +11,10 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./courses-list-item.component.css']
 })
 export class CoursesListItemComponent implements OnInit {
-  @Input() 
+  @Input()
   item: CoursesListItem;
 
-  @Output() 
+  @Output()
   delete: EventEmitter<number> = new EventEmitter<number>();
 
   faClock = faClock;

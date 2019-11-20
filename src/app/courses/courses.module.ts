@@ -5,7 +5,7 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CoursesListItemComponent } from './courses-list-item/courses-list-item.component';
 import { CoursesLoadMoreComponent } from './courses-load-more/courses-load-more.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CoursesHeaderComponent, CoursesListComponent, CoursesListItemComponent, CoursesLoadMoreComponent],
