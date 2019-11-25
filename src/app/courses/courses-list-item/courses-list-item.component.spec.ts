@@ -2,13 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoursesListItemComponent } from './courses-list-item.component';
 
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+
 describe('CoursesListItemComponent', () => {
   let component: CoursesListItemComponent;
   let fixture: ComponentFixture<CoursesListItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListItemComponent ]
+      declarations: [ CoursesListItemComponent, FaIconComponent ]
     })
     .compileComponents();
   }));
