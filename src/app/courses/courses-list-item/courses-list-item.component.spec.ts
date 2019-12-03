@@ -2,6 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoursesListItemComponent } from './courses-list-item.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { EventEmitter } from '@angular/core';
 
 describe('CoursesListItemComponent', () => {
   let component: CoursesListItemComponent;
@@ -32,5 +37,18 @@ describe('CoursesListItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('test as a class', () => {
+    const comp = new CoursesListItemComponent();
+    expect(comp.item).toBeUndefined('is not empty at start');
+    expect(comp.faClock).toBe(faClock, 'is not initialized');
+    expect(comp.faCalendarAlt).toBe(faCalendarAlt, 'is not initialized');
+    expect(comp.faPen).toBe(faPen, 'is not initialized');
+    expect(comp.faTrash).toBe(faTrash, 'is not initialized');
+
+    comp.item = { id: 1, title: '', creationDate: '', duration: '', description: '' };
+    comp.deleteCourse();
+    expect(comp.delete.hasError).toBe(false, 'could not delete an item');
   });
 });
