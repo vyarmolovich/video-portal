@@ -1,12 +1,11 @@
 import { async, TestBed } from '@angular/core/testing';
 
 import { CoursesListItemComponent } from './courses-list-item.component';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { CoursesListItem } from './courses-list-item-model';
 
@@ -20,14 +19,13 @@ describe('CoursesListItemComponent', () => {
   })
   class TestHostComponent {
     courcesItem: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: '', duration: '', description: ''};
-    deleteCourseById(event: number) {
-      console.log('Deleting course by #id:' + event);
-    }
+    deleteCourseById(event: number) {}
   }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListItemComponent, FaIconComponent, TestHostComponent ]
+      declarations: [ CoursesListItemComponent, TestHostComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -72,7 +70,7 @@ describe('CoursesListItemComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it ('[Test host] should raise delete event when clicked', () => {
+  it ('[Test integration with parent] should raise delete event when clicked', () => {
     const fixture  = TestBed.createComponent(TestHostComponent);
     const testHost = fixture.componentInstance;
     const deleteButton = fixture.nativeElement.querySelector('.delete-course button');

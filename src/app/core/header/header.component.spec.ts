@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { LogoComponent } from '../logo/logo.component';
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -12,7 +11,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent, LogoComponent, FaIconComponent ]
+      declarations: [ HeaderComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -28,8 +28,6 @@ describe('HeaderComponent', () => {
   });
 
   it('should be initialized properly', () => {
-    const component = new HeaderComponent();
-
     expect(component.faUser).toBe(faUser, 'is not initialized');
     expect(component.faSignOutAlt).toBe(faSignOutAlt, 'is not initialized');
     expect(component.user).toBeDefined('is not defined');

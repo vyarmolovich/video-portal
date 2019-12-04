@@ -35,11 +35,4 @@ describe('CoursesHeaderComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
-
-  it ('should log message', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.searchCourses();
-
-    expect(consoleSpy).toHaveBeenCalled();
-  });
 });
