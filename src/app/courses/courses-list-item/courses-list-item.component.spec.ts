@@ -6,49 +6,73 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { CoursesListItem } from './courses-list-item-model';
+
+
+@Component({
+  template: `
+    <vp-courses-list-item
+      [item]="item" (delete)="deleteCourseById($event)">
+    </vp-courses-list-item>`
+})
+class TestHostComponent {
+  item: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: '', duration: '', description: ''};
+  deleteCourseById(event: number) {
+    console.log('Deleting course by #id:' + event);
+  }
+}
 
 describe('CoursesListItemComponent', () => {
-  let component: CoursesListItemComponent;
-  let fixture: ComponentFixture<CoursesListItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesListItemComponent, FaIconComponent ]
+      declarations: [ CoursesListItemComponent, FaIconComponent, TestHostComponent ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CoursesListItemComponent);
-    component = fixture.componentInstance;
+  it('should create', () => {
+    const fixture = TestBed.createComponent(CoursesListItemComponent);
+    const component = fixture.componentInstance;
     component.item = {
       id: 1,
       title: 'Vide course #1 Title',
       creationDate: '9 Nov, 2018',
       duration: '1h 28 min',
-      description: 'Description of the Video course #1 Learn about where you can find course descriptions, what information they include'
-        + ', how they work, and details about various components of a course description. Course descriptions report information about a'
-        + ' university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course'
-        + ' schedules that contain descriptions for all courses offered during a particular semester'
+      description: 'Description of the Video course'
     };
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('test as a class', () => {
-    const comp = new CoursesListItemComponent();
-    expect(comp.item).toBeUndefined('is not empty at start');
-    expect(comp.faClock).toBe(faClock, 'is not initialized');
-    expect(comp.faCalendarAlt).toBe(faCalendarAlt, 'is not initialized');
-    expect(comp.faPen).toBe(faPen, 'is not initialized');
-    expect(comp.faTrash).toBe(faTrash, 'is not initialized');
+  it('[Test as a class] should be initialized and call deleteCourse method', () => {
+    const component = new CoursesListItemComponent();
+    expect(component.item).toBeUndefined('is not empty at start');
+    expect(component.faClock).toBe(faClock, 'is not initialized');
+    expect(component.faCalendarAlt).toBe(faCalendarAlt, 'is not initialized');
+    expect(component.faPen).toBe(faPen, 'is not initialized');
+    expect(component.faTrash).toBe(faTrash, 'is not initialized');
 
-    comp.item = { id: 1, title: '', creationDate: '', duration: '', description: '' };
-    comp.deleteCourse();
-    expect(comp.delete.hasError).toBe(false, 'could not delete an item');
+    component.item = { id: 1, title: '', creationDate: '', duration: '', description: '' };
+    component.deleteCourse();
+    expect(component.delete.hasError).toBe(false, 'could not delete an item');
+  });
+
+  it ('[Stand-Alone] should raise delete event when clicked', () => {
+    const fixture = TestBed.createComponent(CoursesListItemComponent);
+    const component = fixture.componentInstance;
+    component.item = { id: 10, title: 'Video course #10 Title', creationDate: '', duration: '', description: '' };
+    const spy = spyOn(component, 'deleteCourse');
+    fixture.debugElement.query(By.css('.delete-course button')).triggerEventHandler('click', null);
+
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it ('[Test host] should raise delete event when clicked', () => {
+
   });
 });
