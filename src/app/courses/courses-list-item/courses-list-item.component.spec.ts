@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { CoursesListItemComponent } from './courses-list-item.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
@@ -6,25 +6,24 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { EventEmitter, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { CoursesListItem } from './courses-list-item-model';
 
-
-@Component({
-  template: `
-    <vp-courses-list-item
-      [item]="item" (delete)="deleteCourseById($event)">
-    </vp-courses-list-item>`
-})
-class TestHostComponent {
-  item: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: '', duration: '', description: ''};
-  deleteCourseById(event: number) {
-    console.log('Deleting course by #id:' + event);
-  }
-}
-
 describe('CoursesListItemComponent', () => {
+
+  @Component({
+    template: `
+      <vp-courses-list-item
+        [item]="courcesItem" (delete)="deleteCourseById($event)">
+      </vp-courses-list-item>`
+  })
+  class TestHostComponent {
+    courcesItem: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: '', duration: '', description: ''};
+    deleteCourseById(event: number) {
+      console.log('Deleting course by #id:' + event);
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -66,13 +65,22 @@ describe('CoursesListItemComponent', () => {
     const component = fixture.componentInstance;
     component.item = { id: 10, title: 'Video course #10 Title', creationDate: '', duration: '', description: '' };
     const spy = spyOn(component, 'deleteCourse');
+    fixture.detectChanges();
+
     fixture.debugElement.query(By.css('.delete-course button')).triggerEventHandler('click', null);
 
-    fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
   });
 
   it ('[Test host] should raise delete event when clicked', () => {
+    const fixture  = TestBed.createComponent(TestHostComponent);
+    const testHost = fixture.componentInstance;
+    const deleteButton = fixture.nativeElement.querySelector('.delete-course button');
+    const spy = spyOn(testHost, 'deleteCourseById');
+    fixture.detectChanges(); 
 
+    deleteButton.click();
+
+    expect(spy).toHaveBeenCalled();
   });
 });
