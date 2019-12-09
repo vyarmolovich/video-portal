@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,8 +8,13 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./courses-header.component.css']
 })
 export class CoursesHeaderComponent implements OnInit {
+
+  @Output()
+  searchEvent: EventEmitter<string> = new EventEmitter<string>();
+
   faSearch = faSearch;
   faPlus = faPlus;
+
   search = '';
 
   constructor() { }
@@ -18,6 +23,6 @@ export class CoursesHeaderComponent implements OnInit {
   }
 
   searchCourses() {
-    console.log('Try to search courses by keyword: ' + this.search);
+    this.searchEvent.emit(this.search);
   }
 }

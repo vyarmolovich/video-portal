@@ -7,6 +7,9 @@ import { CoursesLoadMoreComponent } from './courses-load-more/courses-load-more.
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './courses-list-item/highlight.directive';
+import { OrderByPipe } from './courses-list-item/order-by.pipe';
+import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
+import { CoursesComponent } from './courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { HighlightDirective } from './courses-list-item/highlight.directive';
     CoursesListComponent, 
     CoursesListItemComponent, 
     CoursesLoadMoreComponent,
-    HighlightDirective
+    HighlightDirective,
+    OrderByPipe,
+    FilterByTitlePipe,
+    CoursesComponent
   ],
   imports: [
     CommonModule,
@@ -22,9 +28,10 @@ import { HighlightDirective } from './courses-list-item/highlight.directive';
     FormsModule
   ],
   exports: [
-    CoursesHeaderComponent,
-    CoursesListComponent,
-    CoursesLoadMoreComponent
+    CoursesComponent
+  ],
+  providers: [
+    FilterByTitlePipe
   ]
 })
 export class CoursesModule { }
