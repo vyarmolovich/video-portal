@@ -6,9 +6,16 @@ import { CoursesListItemComponent } from './courses-list-item/courses-list-item.
 import { CoursesLoadMoreComponent } from './courses-load-more/courses-load-more.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { HighlightDirective } from './courses-list-item/highlight.directive';
 
 @NgModule({
-  declarations: [CoursesHeaderComponent, CoursesListComponent, CoursesListItemComponent, CoursesLoadMoreComponent],
+  declarations: [
+    CoursesHeaderComponent, 
+    CoursesListComponent, 
+    CoursesListItemComponent, 
+    CoursesLoadMoreComponent,
+    HighlightDirective
+  ],
   imports: [
     CommonModule,
     FontAwesomeModule,

@@ -10,6 +10,18 @@
     display: table;
 }
 
+.fresh {
+    border: 2px solid green;
+}
+
+.topRated {
+    background-color: yellow;
+}
+
+.upcoming {
+    border: 2px solid blue;
+}
+
 .courses-list-item .header {
     width: 801px;
     clear: both;
@@ -31,6 +43,11 @@
     line-height: 1.25;
     color: #2c2f3c;
     float: left
+}
+
+.courses-list-item .topRated {
+    padding-left: 10px;
+    float: left;
 }
 
 .courses-list-item .creationDate,

@@ -1,7 +1,10 @@
-<div  class="courses-list-item">
+<div  class="courses-list-item" [vpHighlight]="item" [ngClass]="{'topRated': item.topRated}">
     <div class="header">
         <div class="title">
             {{item.title}}
+        </div>
+        <div class="topRated" *ngIf="item.topRated">
+            <fa-icon [icon]="faStar" size="lg"></fa-icon>
         </div>
         <div class="creationDate">
             <fa-icon [icon]="faCalendarAlt" size="lg"></fa-icon>
