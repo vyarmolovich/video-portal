@@ -27,7 +27,7 @@ export class CoursesListComponent implements OnInit {
         id: 1,
         title: 'Video course #1 Intro',
         creationDate: new Date ('2020-04-11'),
-        duration: '1h 28 min',
+        duration: 88,
         description: 'Description of the Video course #1 Learn about where you can find course descriptions, what information they include'
           + ', how they work, and details about various components of a course description. Course descriptions report information about a'
           + ' university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course'
@@ -38,7 +38,7 @@ export class CoursesListComponent implements OnInit {
         id: 2,
         title: 'Video course #2 Components',
         creationDate: new Date ('2019-12-02'),
-        duration: '48 min',
+        duration: 48,
         description: 'Description of the Video course #2 Learn about where you can find course descriptions, what information they include'
           + ', how they work, and details about various components of a course description.',
         topRated: false
@@ -47,7 +47,7 @@ export class CoursesListComponent implements OnInit {
         id: 3,
         title: 'Video course #3 Unit Testing',
         creationDate: new Date ('2018-11-09'),
-        duration: '1h 15 min',
+        duration: 75,
         description: 'Description of the Video course #3  Course descriptions report information about a university or college\'s classes.'
           + ' They\'re published both in course catalogs that outline degree requirements and in course schedules that contain'
           + ' descriptions for all courses offered during a particular semester',
@@ -57,7 +57,7 @@ export class CoursesListComponent implements OnInit {
         id: 4,
         title: 'Video course #4 Directives and Pipes',
         creationDate: new Date ('2019-05-09'),
-        duration: '1h 03 min',
+        duration: 63,
         description: 'Description of the Video course #4 They\'re published both in course catalogs that outline degree requirements'
           + ' and in course schedules that contain descriptions for all courses offered during a particular semester',
         topRated: false

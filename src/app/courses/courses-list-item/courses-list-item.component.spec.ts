@@ -18,7 +18,7 @@ describe('CoursesListItemComponent', () => {
       </vp-courses-list-item>`
   })
   class TestHostComponent {
-    courcesItem: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: new Date(), duration: '', description: '', topRated: false};
+    courcesItem: CoursesListItem = {id: 11, title: 'Video course #11 Title', creationDate: new Date(), duration: 0, description: '', topRated: false};
     deleteCourseById(event: number) {}
   }
 
@@ -37,7 +37,7 @@ describe('CoursesListItemComponent', () => {
       id: 1,
       title: 'Vide course #1 Title',
       creationDate: new Date ('2018-11-09'),
-      duration: '1h 28 min',
+      duration: 88,
       description: 'Description of the Video course',
       topRated: false
     };
@@ -54,7 +54,7 @@ describe('CoursesListItemComponent', () => {
     expect(component.faPen).toBe(faPen, 'is not initialized');
     expect(component.faTrash).toBe(faTrash, 'is not initialized');
 
-    component.item = { id: 1, title: '', creationDate: new Date(), duration: '', description: '', topRated: false };
+    component.item = { id: 1, title: '', creationDate: new Date(), duration: 0, description: '', topRated: false };
     component.deleteCourse();
     expect(component.delete.hasError).toBe(false, 'could not delete an item');
   });
@@ -62,7 +62,7 @@ describe('CoursesListItemComponent', () => {
   it ('[Stand-Alone] should raise delete event when clicked', () => {
     const fixture = TestBed.createComponent(CoursesListItemComponent);
     const component = fixture.componentInstance;
-    component.item = { id: 10, title: 'Video course #10 Title', creationDate: new Date(), duration: '', description: '', topRated: false };
+    component.item = { id: 10, title: 'Video course #10 Title', creationDate: new Date(), duration: 0, description: '', topRated: false };
     const spy = spyOn(component, 'deleteCourse');
     fixture.detectChanges();
 

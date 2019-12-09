@@ -10,6 +10,7 @@ import { HighlightDirective } from './courses-list-item/highlight.directive';
 import { OrderByPipe } from './courses-list-item/order-by.pipe';
 import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
 import { CoursesComponent } from './courses/courses.component';
+import { DurationPipe } from './courses-list-item/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CoursesComponent } from './courses/courses.component';
     HighlightDirective,
     OrderByPipe,
     FilterByTitlePipe,
-    CoursesComponent
+    CoursesComponent,
+    DurationPipe
   ],
   imports: [
     CommonModule,
