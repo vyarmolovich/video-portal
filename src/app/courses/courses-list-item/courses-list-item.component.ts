@@ -4,6 +4,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'vp-courses-list-item',
@@ -21,6 +22,7 @@ export class CoursesListItemComponent implements OnInit {
   faCalendarAlt = faCalendarAlt;
   faPen = faPen;
   faTrash = faTrash;
+  faStar = faStar;
 
   constructor() { }
 

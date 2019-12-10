@@ -6,18 +6,34 @@ import { CoursesListItemComponent } from './courses-list-item/courses-list-item.
 import { CoursesLoadMoreComponent } from './courses-load-more/courses-load-more.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { HighlightDirective } from './courses-list-item/highlight.directive';
+import { OrderByPipe } from './courses-list-item/order-by.pipe';
+import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
+import { CoursesComponent } from './courses/courses.component';
+import { DurationPipe } from './courses-list-item/duration.pipe';
 
 @NgModule({
-  declarations: [CoursesHeaderComponent, CoursesListComponent, CoursesListItemComponent, CoursesLoadMoreComponent],
+  declarations: [
+    CoursesHeaderComponent, 
+    CoursesListComponent, 
+    CoursesListItemComponent, 
+    CoursesLoadMoreComponent,
+    HighlightDirective,
+    OrderByPipe,
+    FilterByTitlePipe,
+    CoursesComponent,
+    DurationPipe
+  ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     FormsModule
   ],
   exports: [
-    CoursesHeaderComponent,
-    CoursesListComponent,
-    CoursesLoadMoreComponent
+    CoursesComponent
+  ],
+  providers: [
+    FilterByTitlePipe
   ]
 })
 export class CoursesModule { }

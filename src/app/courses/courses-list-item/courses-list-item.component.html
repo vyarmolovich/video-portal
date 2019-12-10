@@ -1,15 +1,18 @@
-<div  class="courses-list-item">
+<div  class="courses-list-item" [vpHighlight]="item" [class.topRated]="item.topRated">
     <div class="header">
         <div class="title">
-            {{item.title}}
+            {{item.title | uppercase}}
+        </div>
+        <div class="topRated" *ngIf="item.topRated">
+            <fa-icon [icon]="faStar" size="lg"></fa-icon>
         </div>
         <div class="creationDate">
             <fa-icon [icon]="faCalendarAlt" size="lg"></fa-icon>
-            <div>{{item.creationDate}}</div>
+            <div>{{item.creationDate | date: 'd MMM, y'}}</div>
         </div>
         <div class="duration">
             <fa-icon [icon]="faClock" flip="horizontal" size="lg"></fa-icon>
-            <div>{{item.duration}}</div>
+            <div>{{item.duration | duration}}</div>
         </div>
     </div>
     <div class="description">
