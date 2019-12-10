@@ -1,4 +1,4 @@
-<div  class="courses-list-item" [vpHighlight]="item" [ngClass]="{'topRated': item.topRated}">
+<div  class="courses-list-item" [vpHighlight]="item" [class.topRated]="item.topRated">
     <div class="header">
         <div class="title">
             {{item.title | uppercase}}
