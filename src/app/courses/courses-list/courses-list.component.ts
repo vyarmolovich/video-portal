@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
 import { FilterByTitlePipe } from '../courses-list-item/filter-by-title.pipe';
-import { CoursesService } from '../courses.service';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'vp-courses-list',

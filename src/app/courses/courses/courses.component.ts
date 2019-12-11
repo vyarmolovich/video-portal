@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoursesListComponent } from '../courses-list/courses-list.component';
 import { FilterByTitlePipe } from '../courses-list-item/filter-by-title.pipe';
-import { CoursesService } from '../courses.service';
+import { CoursesService } from '../../services/courses.service';
 
 
 @Component({

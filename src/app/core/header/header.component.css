@@ -1,7 +1,7 @@
 .header {
-    width: 1280px;
     height: 64px;
     background-color: #414452;
+    margin: auto;
 }
 
 .header .btn {

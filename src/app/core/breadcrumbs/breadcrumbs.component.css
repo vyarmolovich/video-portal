@@ -1,11 +1,11 @@
 .breadcrumbs {
-    width: 1280px;
     height: 64px;
     background-color: #ffffff;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.71;
     color: #2c2f3c;
+    margin: auto;
   }
 
   .breadcrumbs  div {

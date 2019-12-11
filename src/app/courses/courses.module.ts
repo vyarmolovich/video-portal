@@ -11,6 +11,7 @@ import { OrderByPipe } from './courses-list-item/order-by.pipe';
 import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
 import { CoursesComponent } from './courses/courses.component';
 import { DurationPipe } from './courses-list-item/duration.pipe';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DurationPipe } from './courses-list-item/duration.pipe';
     DurationPipe
   ],
   imports: [
+    CoreModule,
     CommonModule,
     FontAwesomeModule,
     FormsModule

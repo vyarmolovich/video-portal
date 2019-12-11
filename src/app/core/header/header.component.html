@@ -1,5 +1,7 @@
 <div class='header'>
     <vp-logo></vp-logo>
-    <button class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
-    <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{user.firstName}}</button>
+    <div *ngIf="isAuth">
+        <button (click)="logout()" class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
+        <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{user.firstName}}</button>
+    </div>
 </div>
