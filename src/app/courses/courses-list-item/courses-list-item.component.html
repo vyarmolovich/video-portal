@@ -1,33 +1,37 @@
 <div  class="courses-list-item" [vpHighlight]="item" [class.topRated]="item.topRated">
-    <div class="header">
-        <div class="title">
-            {{item.title | uppercase}}
-        </div>
-        <div class="topRated" *ngIf="item.topRated">
-            <fa-icon [icon]="faStar" size="lg"></fa-icon>
-        </div>
-        <div class="creationDate">
-            <fa-icon [icon]="faCalendarAlt" size="lg"></fa-icon>
-            <div>{{item.creationDate | date: 'd MMM, y'}}</div>
-        </div>
-        <div class="duration">
-            <fa-icon [icon]="faClock" flip="horizontal" size="lg"></fa-icon>
-            <div>{{item.duration | duration}}</div>
-        </div>
-    </div>
-    <div class="description">
-        {{item.description}}
-    </div>
-    <div class="delete-course">
-            <div class="wrapper">
-                <fa-icon [icon]="faTrash" size="sm"></fa-icon>
-                <button (click)="deleteCourse()" type="button" class="btn">Delete</button>
+    <div class="wrapper">
+        <div class="header">
+            <div class="title">
+                {{item.title | uppercase}}
             </div>
-    </div>
-    <div class="edit-course">
-            <div class="wrapper">
-                <fa-icon [icon]="faPen" size="sm"></fa-icon>
-                <button type="button" class="btn">Edit</button>
+            <div class="topRated" *ngIf="item.topRated">
+                <fa-icon [icon]="faStar" size="lg"></fa-icon>
             </div>
+            <div class="creationDate">
+                <fa-icon [icon]="faCalendarAlt" size="lg"></fa-icon>
+                <div>{{item.creationDate | date: 'd MMM, y'}}</div>
+            </div>
+            <div class="duration">
+                <fa-icon [icon]="faClock" flip="horizontal" size="lg"></fa-icon>
+                <div>{{item.duration | duration}}</div>
+            </div>
+        </div>
+        <div class="description">
+            {{item.description}}
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="delete-course">
+                <div class="wrapper">
+                    <fa-icon [icon]="faTrash" size="sm"></fa-icon>
+                    <button (click)="deleteCourse()" type="button" class="btn">Delete</button>
+                </div>
+        </div>
+        <div class="edit-course">
+                <div class="wrapper">
+                    <fa-icon [icon]="faPen" size="sm"></fa-icon>
+                    <button type="button" class="btn">Edit</button>
+                </div>
+        </div>
     </div>
 </div>
