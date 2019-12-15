@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CoursesListItem } from '../courses/courses-list-item/courses-list-item-model';
+import { FilterByTitlePipe } from '../courses/courses-list-item/filter-by-title.pipe';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
+
+  private filterValue: string;
 
   private courses: CoursesListItem[] = [     
     {
@@ -49,10 +52,10 @@ export class CoursesService {
   ];
 
 
-  constructor() { }
+  constructor(private filterPipe: FilterByTitlePipe) { }
 
   getList() {
-    return this.courses;
+    return this.filterPipe.transform(this.courses, this.filterValue);
   }
 
   createCourse(item: CoursesListItem) {
@@ -79,5 +82,9 @@ export class CoursesService {
     if (index !== -1) {
       this.courses.splice(index, 1);
     }
+  }
+
+  setFilter(filter: string) {
+    this.filterValue = filter;
   }
 }

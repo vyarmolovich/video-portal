@@ -1,34 +1,26 @@
 import { Injectable } from '@angular/core';
 import { User } from '../core/user-model';
 
+const USER_KEY = 'AUTH_USER_KEY';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private currentUser: User = null;
   
-  constructor() { }
-
   login(user: User) {
-    if (!this.isAuthenticated(user)) {
-      this.currentUser = user;
-    }
-    console.log("Log " + user  + " current: " + JSON.stringify(this.currentUser));
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
   logout(user: User) {
-    console.log("User " + this.currentUser.firstName + " is logged out.");
-    this.currentUser = null;
+    localStorage.setItem(USER_KEY, null);
   }
 
   isAuthenticated(user: User) {
-    console.log("isAuthenticated " + JSON.stringify(user) + " current: " + JSON.stringify(this.currentUser));
-    return this.currentUser != null && this.currentUser === user;
+    return localStorage.getItem(USER_KEY) === JSON.stringify(user);
   }
 
   getUserInfo() {
-    console.log("getUserInfo " + this.currentUser);
-    return this.currentUser;
+    return JSON.parse(localStorage.getItem(USER_KEY));;
   }
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
-import { FilterByTitlePipe } from '../courses-list-item/filter-by-title.pipe';
 import { CoursesService } from '../../services/courses.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { CoursesDeleteDialogComponent } from '../courses-delete-dialog/courses-delete-dialog.component';
+
+
 
 @Component({
   selector: 'vp-courses-list',
@@ -9,19 +12,31 @@ import { CoursesService } from '../../services/courses.service';
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent implements OnInit {
+
+  deleteDialogRef: MatDialogRef<CoursesDeleteDialogComponent>;
+
   public coursesItems: CoursesListItem[];
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.coursesItems = this.coursesService.getList();
   }
 
-  deleteCourseById(event: number) {
-    const confirm = window.confirm('Do you really want to delete this course?');
-    if (confirm) {
-      this.coursesService.removeItemByiD(event);
-      this.coursesItems = this.coursesService.getList();
-    }
+  deleteCourseById(id: number) {
+    let index = this.coursesItems.findIndex(course => course.id === id);
+
+    this.deleteDialogRef = this.dialog.open(CoursesDeleteDialogComponent, {
+      data: {title: this.coursesItems[index].title}
+    });
+
+    this.deleteDialogRef
+      .afterClosed()
+      .subscribe((confirm: boolean) => {
+        if (confirm) {
+          this.coursesService.removeItemByiD(id);
+          this.coursesItems = this.coursesService.getList();
+        }
+      });
   }
 }

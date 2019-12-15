@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { CoursesModule } from './courses/courses.module';
 import { LoginComponent } from './auth/login/login.component';
 import { CoursesComponent } from './courses/courses/courses.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'courses', component: CoursesComponent },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     BrowserModule,
     CoreModule,
     CoursesModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,6 +12,8 @@ import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
 import { CoursesComponent } from './courses/courses.component';
 import { DurationPipe } from './courses-list-item/duration.pipe';
 import { CoreModule } from '../core/core.module';
+import { MatDialogModule } from '@angular/material';
+import { CoursesDeleteDialogComponent } from './courses-delete-dialog/courses-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { CoreModule } from '../core/core.module';
     CoursesListComponent, 
     CoursesListItemComponent, 
     CoursesLoadMoreComponent,
+    CoursesDeleteDialogComponent,
     HighlightDirective,
     OrderByPipe,
     FilterByTitlePipe,
@@ -29,13 +32,17 @@ import { CoreModule } from '../core/core.module';
     CoreModule,
     CommonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   exports: [
     CoursesComponent
   ],
   providers: [
     FilterByTitlePipe
+  ],
+  entryComponents: [
+    CoursesDeleteDialogComponent
   ]
 })
 export class CoursesModule { }

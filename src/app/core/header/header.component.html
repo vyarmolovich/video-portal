@@ -1,6 +1,6 @@
 <div class='header'>
     <vp-logo></vp-logo>
-    <div *ngIf="isAuth">
+    <div *ngIf="isAuthenticated">
         <button (click)="logout()" class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
         <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{user.firstName}}</button>
     </div>
