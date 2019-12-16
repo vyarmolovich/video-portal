@@ -27,6 +27,8 @@ export class CoursesListComponent implements OnInit {
     let index = this.coursesItems.findIndex(course => course.id === id);
 
     this.deleteDialogRef = this.dialog.open(CoursesDeleteDialogComponent, {
+      height: '212px',
+      width: '394px',
       data: {title: this.coursesItems[index].title}
     });
 
