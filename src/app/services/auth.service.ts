@@ -12,15 +12,15 @@ export class AuthService {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  logout(user: User) {
-    localStorage.setItem(USER_KEY, null);
+  logout() {
+    localStorage.removeItem(USER_KEY);
   }
 
-  isAuthenticated(user: User) {
-    return localStorage.getItem(USER_KEY) === JSON.stringify(user);
+  isAuthenticated() {
+    return localStorage.getItem(USER_KEY) == null ? false : true;
   }
 
-  getUserInfo() {
+  getUserInfo() : User {
     return JSON.parse(localStorage.getItem(USER_KEY));;
   }
 }

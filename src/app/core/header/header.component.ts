@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../user-model';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Component } from '@angular/core';
+import { faUser} from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'vp-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   public faUser = faUser;
   public faSignOutAlt = faSignOutAlt;
+  public faSignInAlt = faSignInAlt;
 
-  public user: User = {id: 1, firstName: 'Vasya', lastName: 'Pupkin', email: 'vaspup@gmail.com', password: 'secret123'};
+  constructor(private authService: AuthService, private router: Router) { }
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
-    this.authService.login(this.user);
+  login() {
+    this.router.navigate(['/login']);
   }
 
   logout() {
-    this.authService.logout(this.user);
+    this.authService.logout();
   }
 
   isAuthenticated() {
-    return this.authService.isAuthenticated(this.user);
+    return this.authService.isAuthenticated();
+  }
+
+  getUserName() {
+    return this.authService.getUserInfo().firstName;
   }
 }
