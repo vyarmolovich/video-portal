@@ -1,13 +1,10 @@
 .courses-list-item {
-    width: 1062px;
     border-radius: 8px;
     box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
     background-color: #ffffff;
-    margin-left: 85px;
     margin-bottom: 24px;
     padding: 24px;
     clear: both;
-    display: table;
 }
 
 .fresh {
@@ -22,14 +19,18 @@
     border: 2px solid blue;
 }
 
+.courses-list-item .wrapper {
+    width: 80%;
+    display: table;
+}
+
 .courses-list-item .header {
-    width: 801px;
+    width: 100%;
     clear: both;
     display: table;
 } 
 
 .courses-list-item .description {
-    width: 801px;
     float: left;
     font-size: 14px;
     line-height: 1.71;
@@ -66,9 +67,9 @@
 
 .courses-list-item .edit-course,
 .courses-list-item .delete-course {
-    float: right;
     padding-left: 12px;
-    padding-top: 20px;
+    margin-top: -20px;
+    float: right;
 }
 
 .courses-list-item .btn {

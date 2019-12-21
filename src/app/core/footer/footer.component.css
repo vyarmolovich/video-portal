@@ -1,11 +1,10 @@
 .footer {
     position: fixed;
     bottom: 0;
-    width: 1280px;
     height: 64px;
-    position: fixed;
     background-color: #414452;
     text-align: right;
+    width: 100%;
 }
 
 .footer .copyright {

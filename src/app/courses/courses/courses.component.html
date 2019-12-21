@@ -1,3 +1,7 @@
-<vp-courses-header (searchEvent)="searchCourseByTitle($event)" ></vp-courses-header>
-<vp-courses-list></vp-courses-list>
-<vp-courses-load-more></vp-courses-load-more>
+<vp-breadcrumbs></vp-breadcrumbs>
+
+<div class="body">
+    <vp-courses-header (searchEvent)="searchCourseByTitle($event)" ></vp-courses-header>
+    <vp-courses-list  (deleteEvent)="deleteCourse($event)" [coursesItems]="coursesService.getList()"></vp-courses-list>
+    <vp-courses-load-more></vp-courses-load-more>    
+</div>

@@ -1,8 +1,7 @@
 .courses-header {
-    width: 1110px;
-    margin-left: 85px;
-    padding-top: 24px;
-    margin-bottom: 72px;
+    clear: both;
+    display: table;
+    width: 100%;
 }
 
 .search-course {
@@ -61,6 +60,7 @@
     color: white;
     font-size: 14px;
     cursor: pointer;
+    margin-bottom: 12px;
 }
 
 .add-course fa-icon { 

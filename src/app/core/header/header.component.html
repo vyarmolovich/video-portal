@@ -1,5 +1,10 @@
 <div class='header'>
     <vp-logo></vp-logo>
-    <button class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
-    <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{user.firstName}}</button>
+    <div *ngIf="isAuthenticated(); else elseBlock">
+        <button (click)="logout()" class="btn"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log off</button>
+        <button class="btn"><fa-icon [icon]="faUser"></fa-icon> {{getUserName()}}</button>
+    </div>
+    <ng-template #elseBlock>
+        <button (click)="login()" class="btn"><fa-icon [icon]="faSignInAlt"></fa-icon> Login</button>
+    </ng-template>
 </div>

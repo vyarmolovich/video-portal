@@ -5,21 +5,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CoursesModule } from './courses/courses.module';
+import { LoginComponent } from './auth/login/login.component';
+import { CoursesComponent } from './courses/courses/courses.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
-  { path: 'courses', component: AppComponent },
-  { path: '',   redirectTo: '/courses', pathMatch: 'full' }
+  { path: 'courses', component: CoursesComponent },
+  { path: '',   redirectTo: '/courses', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     CoreModule,
     CoursesModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
