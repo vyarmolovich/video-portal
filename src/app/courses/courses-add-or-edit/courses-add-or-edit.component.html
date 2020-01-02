@@ -1,0 +1,40 @@
+<div class="center">
+
+     <div class="add-or-edit">
+        <div class="wrapper">
+            <form action="" method="get">
+                <div class="header">New course</div>
+                <div class="title">
+                    Title:
+                    <div class="required">*required</div>
+                    <input name="title" placeholder="&nbsp;&nbsp;Text input"/>
+                </div>
+                <div class="description">
+                    Description:
+                    <div class="required">*required</div>
+                    <textarea name="description" rows="4" cols="50" placeholder="&nbsp;Add description"></textarea>
+                </div>
+                <div class="duration">
+                        Duration:
+                        <div class="required">*required</div>
+                        <input name="duration" placeholder="&nbsp;&nbsp;minutes"/>
+                </div>
+                <div class="date">
+                        Date:
+                        <div class="required">*required</div>
+                        <input name="date" placeholder="&nbsp;&nbsp;mm-dd-yyyy"/>
+                        <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
+                </div>
+                <div class="authors">
+                        Authors:
+                        <div class="required">*required</div>
+                        <input name="authors" placeholder="&nbsp;&nbsp;Start typing"/>
+                </div>        
+                <div class="actions">
+                    <button (click)="cancel()" type="button" class="cancel">Cancel</button>
+                    <button (click)="save()" type="submit" class="save">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

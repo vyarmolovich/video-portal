@@ -1,0 +1,110 @@
+
+.center {
+    position: relative;
+    min-height: 100%;
+}
+
+.wrapper {
+    padding: 24px;
+}
+
+.add-or-edit {
+    width: 731px;
+    height: 590px;
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+    display: inline-block;
+    text-align: left;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.add-or-edit .header {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.add-or-edit .title,
+.add-or-edit .description {
+    width: 683px;
+} 
+
+.add-or-edit .duration,
+.add-or-edit .date {
+    width: 150px;
+} 
+
+.add-or-edit .authors {
+    width: 312px;
+}
+
+.add-or-edit input {
+    height: 36px;
+}
+
+.add-or-edit input,
+.add-or-edit textarea {
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px #d9dbe3;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: 0.22px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding-left: 2px;
+    padding-top: 2px;
+}
+
+fa-icon { 
+    top: 12px; 
+    left: 14px; 
+    color: #9ca3aa;
+    float: right;
+    margin-top: -54px;
+    position: relative;
+    margin-right: 24px;
+}
+
+.add-or-edit .required {
+    color: #6c7283;
+    font-size: 12px;
+    margin-top: 2px;
+    float: right;
+}
+
+.add-or-edit .actions {
+    margin: 0;
+    font-size: 14px;
+    float: right;
+}
+
+.add-or-edit .save {
+    width: 68px;
+    height: 36px;
+    border-radius: 3px;
+    background-color: #9bc837;
+    border: none;
+    color: white;
+    margin-left: 6px;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.add-or-edit .cancel {
+    width: 68px;
+    height: 36px;
+    border-radius: 3px;
+    background-color: #d9dbe3;
+    border: none;
+    margin-left: 6px;
+    cursor: pointer;
+    margin-top: 6px;
+}

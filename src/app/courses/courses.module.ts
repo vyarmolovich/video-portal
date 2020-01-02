@@ -14,6 +14,7 @@ import { DurationPipe } from './courses-list-item/duration.pipe';
 import { CoreModule } from '../core/core.module';
 import { MatDialogModule } from '@angular/material';
 import { CoursesDeleteDialogComponent } from './courses-delete-dialog/courses-delete-dialog.component';
+import { CoursesAddOrEditComponent } from './courses-add-or-edit/courses-add-or-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CoursesDeleteDialogComponent } from './courses-delete-dialog/courses-de
     OrderByPipe,
     FilterByTitlePipe,
     CoursesComponent,
-    DurationPipe
+    DurationPipe,
+    CoursesAddOrEditComponent
   ],
   imports: [
     CoreModule,

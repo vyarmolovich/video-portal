@@ -30,6 +30,5 @@ describe('HeaderComponent', () => {
   it('should be initialized properly', () => {
     expect(component.faUser).toBe(faUser, 'is not initialized');
     expect(component.faSignOutAlt).toBe(faSignOutAlt, 'is not initialized');
-    expect(component.user).toBeDefined('is not defined');
   });
 });

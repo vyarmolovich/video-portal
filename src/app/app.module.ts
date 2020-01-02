@@ -8,11 +8,13 @@ import { CoursesModule } from './courses/courses.module';
 import { LoginComponent } from './auth/login/login.component';
 import { CoursesComponent } from './courses/courses/courses.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CoursesAddOrEditComponent } from './courses/courses-add-or-edit/courses-add-or-edit.component';
 
 const appRoutes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: '',   redirectTo: '/courses', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'addcourse', component: CoursesAddOrEditComponent }
 ];
 
 @NgModule({
