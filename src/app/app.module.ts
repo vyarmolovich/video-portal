@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: '',   redirectTo: '/courses', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'addcourse', component: CoursesAddOrEditComponent }
+  { path: 'courses/new', component: CoursesAddOrEditComponent }
 ];
 
 @NgModule({

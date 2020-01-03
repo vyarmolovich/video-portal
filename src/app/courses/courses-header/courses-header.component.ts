@@ -28,6 +28,6 @@ export class CoursesHeaderComponent implements OnInit {
   }
 
   addCourse() {
-    this.router.navigate(['/addcourse']);
+    this.router.navigate(['/courses/new']);
   }
 }

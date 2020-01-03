@@ -40,6 +40,12 @@
     width: 150px;
 } 
 
+.add-or-edit .duration-formatted {
+    float: left;
+    margin-top: -40px;
+    margin-left: 170px;
+}
+
 .add-or-edit .authors {
     width: 312px;
 }

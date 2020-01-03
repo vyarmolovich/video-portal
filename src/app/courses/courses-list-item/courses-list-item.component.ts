@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CoursesListItem } from './courses-list-item-model';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
@@ -9,9 +9,10 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'vp-courses-list-item',
   templateUrl: './courses-list-item.component.html',
-  styleUrls: ['./courses-list-item.component.css']
+  styleUrls: ['./courses-list-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CoursesListItemComponent implements OnInit {
+export class CoursesListItemComponent {
   @Input()
   item: CoursesListItem;
 
@@ -23,11 +24,6 @@ export class CoursesListItemComponent implements OnInit {
   faPen = faPen;
   faTrash = faTrash;
   faStar = faStar;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   deleteCourse() {
     this.delete.emit(this.item.id);
