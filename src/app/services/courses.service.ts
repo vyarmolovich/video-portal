@@ -19,7 +19,8 @@ export class CoursesService {
         + ', how they work, and details about various components of a course description. Course descriptions report information about a'
         + ' university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course'
         + ' schedules that contain descriptions for all courses offered during a particular semester',
-      topRated: true
+      topRated: true,
+      authors: []
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ export class CoursesService {
       duration: 48,
       description: 'Description of the Video course #2 Learn about where you can find course descriptions, what information they include'
         + ', how they work, and details about various components of a course description.',
-      topRated: false
+      topRated: false,
+      authors: []
     },
     {
       id: 3,
@@ -38,7 +40,8 @@ export class CoursesService {
       description: 'Description of the Video course #3  Course descriptions report information about a university or college\'s classes.'
         + ' They\'re published both in course catalogs that outline degree requirements and in course schedules that contain'
         + ' descriptions for all courses offered during a particular semester',
-      topRated: true
+      topRated: true,
+      authors: []
     },
     {
       id: 4,
@@ -47,7 +50,8 @@ export class CoursesService {
       duration: 63,
       description: 'Description of the Video course #4 They\'re published both in course catalogs that outline degree requirements'
         + ' and in course schedules that contain descriptions for all courses offered during a particular semester',
-      topRated: false
+      topRated: false,
+      authors: []
     }
   ];
 

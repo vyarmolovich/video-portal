@@ -36,4 +36,8 @@ export class CoursesComponent {
         }
       });
   }
+
+  getCourses() {
+    return this.coursesService.getList();
+  }
 }
