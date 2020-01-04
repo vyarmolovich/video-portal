@@ -16,6 +16,6 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.user);
-    this.router.navigate(['/']);
+    this.router.navigate([this.authService.getRedirectUrl()]);
   }
 }
