@@ -25,7 +25,7 @@
                 <div class="date">
                     Date:
                     <div class="required">*required</div>
-                    <input name="date" [(ngModel)]="item.creationDate" placeholder="&nbsp;&nbsp;mm-dd-yyyy"/>
+                    <input name="date" [ngModel]="item.creationDate | date: 'd MMM, y'" (ngModelChange)="setCreationDate($event)" placeholder="&nbsp;&nbsp;mm-dd-yyyy"/>
                     <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
                 </div>
                 <div class="authors">

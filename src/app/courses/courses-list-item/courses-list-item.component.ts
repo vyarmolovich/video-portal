@@ -5,6 +5,7 @@ import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'vp-courses-list-item',
@@ -25,7 +26,13 @@ export class CoursesListItemComponent {
   faTrash = faTrash;
   faStar = faStar;
 
+  constructor(private router: Router) { }
+
   deleteCourse() {
     this.delete.emit(this.item.id);
+  }
+
+  editCourse() {
+    this.router.navigate(['/courses/' + this.item.id]);
   }
 }
