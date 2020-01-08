@@ -7,12 +7,18 @@ import { CoursesAddOrEditComponent } from './courses/courses-add-or-edit/courses
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AuthGuard } from './auth/auth.guard';
 
+export const enum COURSES_PATH {
+  login = 'login',
+  courses = 'courses',
+  courses_new = 'courses/new'
+};
+
 const appRoutes: Routes = [
-  { path: 'courses', component: CoursesComponent, data: { breadcrumbs: 'courses' } },
-  { path: '',   redirectTo: '/courses', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'courses/new', component: CoursesAddOrEditComponent, canActivate: [AuthGuard] },
-  { path: 'courses/:id', component: CoursesAddOrEditComponent, canActivate: [AuthGuard] },
+  { path: COURSES_PATH.courses, component: CoursesComponent, data: { breadcrumbs: 'courses' } },
+  { path: '',   redirectTo: COURSES_PATH.courses, pathMatch: 'full' },
+  { path: COURSES_PATH.login, component: LoginComponent },
+  { path: COURSES_PATH.courses_new, component: CoursesAddOrEditComponent, canActivate: [AuthGuard] },
+  { path: COURSES_PATH.courses + '/:id', component: CoursesAddOrEditComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

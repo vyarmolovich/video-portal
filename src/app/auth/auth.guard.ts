@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { COURSES_PATH } from '../app-routing.module';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class AuthGuard implements CanActivate {
         return true; 
       }
 
-      this.authService.setRedirectUrl(state.url);
+      this.authService.setRedirectUrl(state.url == null ? COURSES_PATH.courses : state.url);
 
-      this.router.navigate(['/login']);
+      this.router.navigate([COURSES_PATH.login]);
       return false;
   }
   

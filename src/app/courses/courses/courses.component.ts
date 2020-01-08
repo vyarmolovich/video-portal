@@ -5,6 +5,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { COURSES_PATH } from 'src/app/app-routing.module';
 
 
 @Component({
@@ -24,8 +25,8 @@ export class CoursesComponent {
   
   deleteCourse(item: CoursesListItem) {
     if (!this.authService.isAuthenticated()) { 
-      this.authService.setRedirectUrl('/courses');
-      this.router.navigate(['/login']);
+      this.authService.setRedirectUrl(COURSES_PATH.courses);
+      this.router.navigate([COURSES_PATH.login]);
       return; 
     }
 
@@ -45,7 +46,7 @@ export class CoursesComponent {
   }
 
   editCourse(id: number) {
-    this.router.navigate(['/courses/' + id]);
+    this.router.navigate([COURSES_PATH.courses + '/' + id]);
   }
 
   getCourses() {
