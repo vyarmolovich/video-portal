@@ -7,6 +7,8 @@ const USER_KEY = 'AUTH_USER_KEY';
   providedIn: 'root'
 })
 export class AuthService {
+
+  private redirectUrl : string = '/';
   
   login(user: User) {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -22,5 +24,13 @@ export class AuthService {
 
   getUserInfo() : User {
     return JSON.parse(localStorage.getItem(USER_KEY));;
+  }
+
+  setRedirectUrl(url: string) {
+    this.redirectUrl = url;
+  }
+
+  getRedirectUrl() {
+    return this.redirectUrl;
   }
 }

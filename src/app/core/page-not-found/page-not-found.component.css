@@ -1,0 +1,25 @@
+.center {
+    position: relative;
+    min-height: 100%;
+}
+
+.wrapper {
+    padding: 24px;
+}
+
+.page-not-found {
+    width: 368px;
+    height: 286px;
+    border-radius: 8px;
+    box-shadow: 0 1px 24px 0 rgba(18, 21, 35, 0.08);
+    background-color: #ffffff;
+    display: inline-block;
+    text-align: left;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}

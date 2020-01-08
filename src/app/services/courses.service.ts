@@ -58,7 +58,7 @@ export class CoursesService {
 
   constructor(private filterPipe: FilterByTitlePipe) { }
 
-  getList() {
+  getList() : CoursesListItem[] {
     return this.filterPipe.transform(this.courses, this.filterValue);
   }
 
@@ -66,7 +66,7 @@ export class CoursesService {
     this.courses.push(item);
   }
 
-  getItemById(id: number) {
+  getItemById(id: number) : CoursesListItem {
     return this.courses.find(course => course.id === id);
   }
 

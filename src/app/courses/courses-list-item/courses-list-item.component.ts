@@ -19,6 +19,9 @@ export class CoursesListItemComponent {
   @Output()
   delete: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  edit: EventEmitter<number> = new EventEmitter<number>();
+
   faClock = faClock;
   faCalendarAlt = faCalendarAlt;
   faPen = faPen;
@@ -27,5 +30,9 @@ export class CoursesListItemComponent {
 
   deleteCourse() {
     this.delete.emit(this.item.id);
+  }
+
+  editCourse() {
+    this.edit.emit(this.item.id);
   }
 }

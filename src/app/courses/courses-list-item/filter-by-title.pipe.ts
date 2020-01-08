@@ -6,7 +6,7 @@ import { CoursesListItem } from './courses-list-item-model';
 })
 export class FilterByTitlePipe implements PipeTransform {
 
-  transform(courses: CoursesListItem[], arg: string): CoursesListItem[] {
+  transform(courses: CoursesListItem[], arg: string) : CoursesListItem[] {
     arg = arg ? arg.toLocaleLowerCase() : null;
     return arg ? courses.filter(
       (course: CoursesListItem) =>

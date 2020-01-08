@@ -5,9 +5,10 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { LogoComponent } from './logo/logo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent, LogoComponent],
+  declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent, LogoComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     FontAwesomeModule
