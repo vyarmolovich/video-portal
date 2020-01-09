@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/core/user-model';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'vp-login',
@@ -10,12 +9,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  private user: User = {id: 1, firstName: 'Vasya', lastName: 'Pupkin', email: 'vaspup@gmail.com', password: 'secret123'};
+  user: User = {
+    id: 0, 
+    login: '', 
+    firstName: '', 
+    lastName: '', 
+    email: '', 
+    password: ''};
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   login() {
     this.authService.login(this.user);
-    this.router.navigate([this.authService.getRedirectUrl()]);
   }
 }

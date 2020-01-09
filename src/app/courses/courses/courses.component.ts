@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { CoursesDeleteDialogComponent } from '../courses-delete-dialog/courses-delete-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
@@ -6,6 +6,7 @@ import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { COURSES_PATH } from 'src/app/app-routing.module';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,14 +14,21 @@ import { COURSES_PATH } from 'src/app/app-routing.module';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent {
+export class CoursesComponent implements OnInit {
 
   deleteDialogRef: MatDialogRef<CoursesDeleteDialogComponent>;
 
+  public courses$ : Observable<CoursesListItem[]>;
+
   constructor(private authService: AuthService, private router: Router, private coursesService: CoursesService, private dialog: MatDialog) { }
+
+  ngOnInit() {
+    this.getCourses();
+  }
 
   searchCourseByTitle(event: string) {
     this.coursesService.setFilter(event);
+    this.getCourses();
   }
   
   deleteCourse(item: CoursesListItem) {
@@ -41,6 +49,7 @@ export class CoursesComponent {
       .subscribe((confirm: boolean) => {
         if (confirm) {
           this.coursesService.removeItem(item);
+          this.getCourses();
         }
       });
   }
@@ -50,6 +59,11 @@ export class CoursesComponent {
   }
 
   getCourses() {
-    return this.coursesService.getList();
+    this.courses$ = this.coursesService.getList();
+  }
+
+  loadMore() {
+    this.coursesService.loadMore();
+    this.getCourses();
   }
 }

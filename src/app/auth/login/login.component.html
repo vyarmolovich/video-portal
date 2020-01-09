@@ -5,9 +5,9 @@
             <form action="" method="get">
                 <div class="header">Login</div>
                 E-mail:
-                <input name="email" placeholder="example@email.com"/>
+                <input name="login" [(ngModel)]="user.login" placeholder="example@email.com"/>
                 Password:
-                <input name="password" placeholder="**********" type="password"/>
+                <input name="password" [(ngModel)]="user.password" placeholder="**********" type="password"/>
                 <a href="#forgot-password">Forgot password?</a>
                 <button (click)="login()" type="submit" class="btn">Login</button>
             </form>

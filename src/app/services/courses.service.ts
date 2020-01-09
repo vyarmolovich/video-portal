@@ -1,6 +1,28 @@
 import { Injectable } from '@angular/core';
 import { CoursesListItem } from '../courses/courses-list-item/courses-list-item-model';
 import { FilterByTitlePipe } from '../courses/courses-list-item/filter-by-title.pipe';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+
+
+interface ICourse {
+  id: number;
+  name: string;
+  description: string;
+  isTopRated: boolean;
+  date: Date;
+  authors: [
+    // {
+    //   "id": 1370,
+    //   "name": "Polly",
+    //   "lastName": "Sosa"
+    // }
+  ];
+  length: number;
+}
+
+const PAGE_SIZE = 4;
 
 @Injectable({
   providedIn: 'root'
@@ -8,73 +30,67 @@ import { FilterByTitlePipe } from '../courses/courses-list-item/filter-by-title.
 export class CoursesService {
 
   private filterValue: string;
+  private coursesCount: number = PAGE_SIZE;
 
-  private courses: CoursesListItem[] = [     
-    {
-      id: 1,
-      title: 'Video course #1 Intro',
-      creationDate: new Date ('2020-04-11'),
-      duration: 88,
-      description: 'Description of the Video course #1 Learn about where you can find course descriptions, what information they include'
-        + ', how they work, and details about various components of a course description. Course descriptions report information about a'
-        + ' university or college\'s classes. They\'re published both in course catalogs that outline degree requirements and in course'
-        + ' schedules that contain descriptions for all courses offered during a particular semester',
-      topRated: true,
-      authors: []
-    },
-    {
-      id: 2,
-      title: 'Video course #2 Components',
-      creationDate: new Date ('2019-12-02'),
-      duration: 48,
-      description: 'Description of the Video course #2 Learn about where you can find course descriptions, what information they include'
-        + ', how they work, and details about various components of a course description.',
-      topRated: false,
-      authors: []
-    },
-    {
-      id: 3,
-      title: 'Video course #3 Unit Testing',
-      creationDate: new Date ('2018-11-09'),
-      duration: 75,
-      description: 'Description of the Video course #3  Course descriptions report information about a university or college\'s classes.'
-        + ' They\'re published both in course catalogs that outline degree requirements and in course schedules that contain'
-        + ' descriptions for all courses offered during a particular semester',
-      topRated: true,
-      authors: []
-    },
-    {
-      id: 4,
-      title: 'Video course #4 Directives and Pipes',
-      creationDate: new Date ('2019-05-09'),
-      duration: 63,
-      description: 'Description of the Video course #4 They\'re published both in course catalogs that outline degree requirements'
-        + ' and in course schedules that contain descriptions for all courses offered during a particular semester',
-      topRated: false,
-      authors: []
-    }
-  ];
+  constructor(private filterPipe: FilterByTitlePipe, private http: HttpClient) { }
 
-
-  constructor(private filterPipe: FilterByTitlePipe) { }
-
-  getList() : CoursesListItem[] {
-    return this.filterPipe.transform(this.courses, this.filterValue);
+  getList() {
+      return this.http
+        .get<ICourse[]>(
+          'http://localhost:3004/courses?start=0&count=' + this.coursesCount,  
+          this.filterValue == null ? {} :{ params : { textFragment: this.filterValue } })
+        .pipe(map((items : ICourse[]) => {
+          return items.map((item: ICourse) => {
+            return {
+              id: item.id,
+              title: item.name,
+              creationDate: item.date,
+              duration: item.length,
+              description: item.description,
+              topRated: item.isTopRated,
+              authors: item.authors
+            }
+          })
+        }));
   }
 
   createCourse(item: CoursesListItem) {
-    this.courses.push(item);
+    this.http
+      .post<ICourse>('http://localhost:3004/courses', 
+        {
+          id: item.id, 
+          name: item.title,
+          date: item.creationDate,
+          length: item.duration,
+          authors: item.authors,
+          isTopRated: item.topRated
+        })
+      .pipe(catchError(this.handleError))
+      .subscribe();
   }
 
-  getItemById(id: number) : CoursesListItem {
-    return this.courses.find(course => course.id === id);
+  getItemById(id: number) {
+    return this.http
+    .get<ICourse>(
+      'http://localhost:3004/courses/' + id)
+    .pipe(map((item : ICourse) => {
+        return {
+          id: item.id,
+          title: item.name,
+          creationDate: item.date,
+          duration: item.length,
+          description: item.description,
+          topRated: item.isTopRated,
+          authors: item.authors
+      }
+    }));
   }
 
-  updateItem(item: CoursesListItem) {
-    let index = this.courses.findIndex(course => course.id === item.id);
-    if (index !== -1) {
-      this.courses[index] = item;
-    }
+  updateItemById(id: number) {
+    // let index = this.courses.findIndex(course => course.id === item.id);
+    // if (index !== -1) {
+    //   this.courses[index] = item;
+    // }
   }
 
   removeItem(item: CoursesListItem) {
@@ -82,13 +98,32 @@ export class CoursesService {
   }
 
   removeItemByiD(id: number) {
-    let index = this.courses.findIndex(course => course.id === id);
-    if (index !== -1) {
-      this.courses.splice(index, 1);
-    }
+    this.http
+      .delete('http://localhost:3004/courses/' + id)
+      .pipe(catchError(this.handleError))
+      .subscribe();
   }
 
   setFilter(filter: string) {
     this.filterValue = filter;
   }
+
+  loadMore() {
+    this.coursesCount += PAGE_SIZE;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred: ', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        'Backend returned code: ' + error.status + ' + body was: ' + error.error);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
 }

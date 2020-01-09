@@ -31,6 +31,6 @@ export class HeaderComponent {
   }
 
   getUserName() {
-    return this.authService.getUserInfo().firstName;
+    return this.authService.getUserInfo().login;
   }
 }
