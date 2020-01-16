@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
 import { CoursesService } from 'src/app/services/courses.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'vp-courses-add-or-edit',
@@ -11,15 +12,9 @@ import { CoursesService } from 'src/app/services/courses.service';
 })
 export class CoursesAddOrEditComponent implements OnInit {
 
-  item: CoursesListItem = {
-      id: null,
-      title: null,
-      creationDate: null,
-      duration: null,
-      description: null,
-      topRated: null,
-      authors: []
-  };
+  public item$: Observable<CoursesListItem>;
+
+  itemId: number;
 
   faCalendar = faCalendar;
   
@@ -29,22 +24,19 @@ export class CoursesAddOrEditComponent implements OnInit {
       this.route.params.forEach(
         (params: Params) => {
           if (params['id'] !== undefined) {
-            this.item = this.coursesService.getItemById(+params['id']);
+            this.itemId = params['id'];
+            this.item$ = this.coursesService.getItemById(this.itemId);
           } 
         }
       );
   }
 
   save() {
-    this.coursesService.updateItem(this.item);
+    this.coursesService.updateItemById(this.itemId);
     this.router.navigate(['/']);
   }
 
   cancel() {
     this.router.navigate(['/']);
-  }
-
-  setCreationDate(event) {
-    this.item.creationDate = event;
   }
 }
