@@ -3,10 +3,8 @@
         <form action="" method="get">
             <div class="wrapper">
                 <fa-icon [icon]="faSearch" flip="horizontal" size="lg"></fa-icon>
-                <input [(ngModel)]="search" name="search" placeholder="Text to search" type="search"/>
+                <input [(ngModel)]="search" name="search" placeholder="Text to search" type="search" (keyup)="searchCourses()"/>
             </div>
-            
-            <button (click)="searchCourses()" type="submit" class="btn">Search</button>
         </form>
     </div>
     <div class="add-course">

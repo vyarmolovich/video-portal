@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { LoadingBlockInterceptor } from './core/loading-block/loading-block.interceptor';
+import { DelayInterceptor } from './core/loading-block/delay.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,16 @@ import { TokenInterceptor } from './auth/token.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingBlockInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DelayInterceptor,
       multi: true
     }
   ],

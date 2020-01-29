@@ -6,9 +6,10 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { LogoComponent } from './logo/logo.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoadingBlockComponent } from './loading-block/loading-block.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent, LogoComponent, PageNotFoundComponent],
+  declarations: [HeaderComponent, FooterComponent, BreadcrumbsComponent, LogoComponent, PageNotFoundComponent, LoadingBlockComponent],
   imports: [
     CommonModule,
     FontAwesomeModule
@@ -16,7 +17,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   exports: [
     HeaderComponent,
     FooterComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    LoadingBlockComponent
   ]
 })
 export class CoreModule { }
