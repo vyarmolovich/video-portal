@@ -4,9 +4,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators'; 
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 const USER_TOKEN = 'AUTH_USER_TOKEN';
-const USER_KEY = 'AUTH_USER_KEY';
 
 interface IUser {
   id: number;
@@ -27,6 +27,9 @@ export class AuthService {
 
   private redirectUrl : string = '/';
   
+  private isAuthSubject$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private userInfoSubject$: Subject<User> = new Subject();
+  
   constructor(private http: HttpClient, private router: Router) {}
 
   login(user: User) {
@@ -39,39 +42,39 @@ export class AuthService {
               .pipe(
                 tap((responce: IUser) => {
                   localStorage.setItem(USER_TOKEN, responce.token);
-                  localStorage.setItem(USER_KEY, 
-                    JSON.stringify({
-                      id: responce.id,
-                      login: responce.login,
-                      firstName: responce.name.firstName,
-                      lastName: responce.name.lastName,
-                      email: '',
-                      password: responce.password,
-                    }));
-                    this.router.navigate([this.getRedirectUrl()]);
-                  }
-                ),
-                catchError(this.handleError))
-              .subscribe();           
+                  this.userInfoSubject$.next({
+                    id: responce.id,
+                    login: responce.login,
+                    firstName: responce.name.firstName,
+                    lastName: responce.name.lastName,
+                    email: '',
+                    password: responce.password,
+                  });
+                  this.isAuthSubject$.next(true);
+                  this.router.navigate([this.getRedirectUrl()]);
+                }
+              ),
+              catchError(this.handleError))
+            .subscribe();           
           }),
         catchError(this.handleError))
       .subscribe();
   }
 
   logout() {
-    localStorage.removeItem(USER_TOKEN);
+    this.isAuthSubject$.next(false);
   }
 
   getToken(): string {
     return localStorage.getItem(USER_TOKEN);
   }
 
-  isAuthenticated() {
-    return this.getToken() == null ? false : true;
+  isAuthenticated(): Observable<boolean> {
+    return this.isAuthSubject$.asObservable();
   }
 
-  getUserInfo() : User {
-    return JSON.parse(localStorage.getItem(USER_KEY));
+  getUserInfo() : Observable<User> {
+    return this.userInfoSubject$.asObservable();
   }
 
   setRedirectUrl(url: string) {

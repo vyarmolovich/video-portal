@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { COURSES_PATH } from '../app-routing.module';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,18 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (this.authService.isAuthenticated()) { 
-        return true; 
-      }
+      return this.authService.isAuthenticated()
+              .pipe(
+                tap((isAuth: boolean) => { 
+                  if(isAuth) {
+                    return true;
+                  }
+                  this.authService.setRedirectUrl(state.url == null ? COURSES_PATH.courses : state.url);
 
-      this.authService.setRedirectUrl(state.url == null ? COURSES_PATH.courses : state.url);
-
-      this.router.navigate([COURSES_PATH.login]);
-      return false;
+                  this.router.navigate([COURSES_PATH.login]);
+                  return false;                
+                })
+              );
   }
   
 }
