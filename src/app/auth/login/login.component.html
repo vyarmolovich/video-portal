@@ -4,6 +4,9 @@
         <div class="wrapper">
             <form action="" method="get">
                 <div class="header">Login</div>
+                <div *ngIf="errorMessage">
+                    <div class="alert">{{errorMessage}}</div>
+                </div>
                 E-mail:
                 <input name="login" [(ngModel)]="user.login" placeholder="example@email.com"/>
                 Password:

@@ -30,6 +30,10 @@
     margin-bottom: 18px;
 }
 
+.alert {
+    color: red;
+}
+
 .login input {
     width: 320px;
     height: 36px;

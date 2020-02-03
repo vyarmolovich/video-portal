@@ -12,6 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { LoadingBlockInterceptor } from './core/loading-block/loading-block.interceptor';
 import { DelayInterceptor } from './core/loading-block/delay.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './+state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './+state/effects/auth.effects';
+import { CoursesEffects } from './+state/effects/courses.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +32,17 @@ import { DelayInterceptor } from './core/loading-block/delay.interceptor';
     NoopAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot(
+      reducers, 
+      {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([AuthEffects, CoursesEffects])
   ],
   providers: [
     {

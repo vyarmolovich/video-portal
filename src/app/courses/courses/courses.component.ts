@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../../services/courses.service';
 import { CoursesDeleteDialogComponent } from '../courses-delete-dialog/courses-delete-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { COURSES_PATH } from 'src/app/app-routing.module';
 import { Observable } from 'rxjs';
+import { selectAuthState, State, selectCoursesState } from 'src/app/+state/app.state';
+import { Store } from '@ngrx/store';
+import { GetList, Search, Delete } from 'src/app/+state/actions/courses.actions';
+import { CoursesState, PAGE_SIZE } from 'src/app/+state/reducers/courses.reducer';
 
 
 @Component({
@@ -18,22 +20,40 @@ export class CoursesComponent implements OnInit {
 
   deleteDialogRef: MatDialogRef<CoursesDeleteDialogComponent>;
 
-  public courses$ : Observable<CoursesListItem[]>;
+  public courses: CoursesListItem[];
+  public pageSize: number;
 
-  constructor(private authService: AuthService, private router: Router, private coursesService: CoursesService, private dialog: MatDialog) { }
+  public isAuth: boolean;
 
+  authState$: Observable<any>;
+  coursesState$: Observable<CoursesState>;
+
+  constructor(private store: Store<State>, private router: Router, private dialog: MatDialog) {
+
+    this.authState$ = this.store.select(selectAuthState);
+    this.coursesState$ = this.store.select(selectCoursesState);
+  }
+
+  
   ngOnInit() {
+    this.authState$.subscribe((state) => {
+      this.isAuth = state.isAuthenticated;
+    });
+
+    this.coursesState$.subscribe((state) => {
+      this.courses = state.courses;
+      this.pageSize = state.pageSize;
+    })
+
     this.getCourses();
   }
 
   searchCourseByTitle(event: string) {
-    this.coursesService.setFilter(event);
-    this.getCourses();
+    this.store.dispatch(new Search(event));
   }
   
   deleteCourse(item: CoursesListItem) {
-    if (!this.authService.isAuthenticated()) { 
-      this.authService.setRedirectUrl(COURSES_PATH.courses);
+    if (!this.isAuth) { 
       this.router.navigate([COURSES_PATH.login]);
       return; 
     }
@@ -48,7 +68,7 @@ export class CoursesComponent implements OnInit {
       .afterClosed()
       .subscribe((confirm: boolean) => {
         if (confirm) {
-          this.coursesService.removeItem(item);
+          this.store.dispatch(new Delete(item));
           this.getCourses();
         }
       });
@@ -59,11 +79,11 @@ export class CoursesComponent implements OnInit {
   }
 
   getCourses() {
-    this.courses$ = this.coursesService.getList();
+    this.store.dispatch(new GetList(this.pageSize));
   }
 
   loadMore() {
-    this.coursesService.loadMore();
+    this.pageSize = this.pageSize + PAGE_SIZE;
     this.getCourses();
   }
 }

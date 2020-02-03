@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "video-portal"
+  "defaultProject": "video-portal",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

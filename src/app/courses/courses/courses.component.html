@@ -1,5 +1,5 @@
 <div class="body">
     <vp-courses-header (searchEvent)="searchCourseByTitle($event)" ></vp-courses-header>
-    <vp-courses-list  (deleteEvent)="deleteCourse($event)" (editEvent)="editCourse($event)" [coursesItems]="courses$ | async"></vp-courses-list>
+    <vp-courses-list  (deleteEvent)="deleteCourse($event)" (editEvent)="editCourse($event)" [coursesItems]="courses"></vp-courses-list>
     <vp-courses-load-more (loadMoreEvent)="loadMore()"></vp-courses-load-more>    
 </div>
