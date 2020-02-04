@@ -1,4 +1,4 @@
 <div>
-    <vp-courses-list-item (delete)="deleteCourseById($event)" (edit)="editCourseById($event)"  *ngFor="let item of (coursesItems | orderBy: 'creationDate')" [item]="item"></vp-courses-list-item>
+    <vp-courses-list-item (delete)="deleteCourseById($event)" (edit)="editCourseById($event)"  *ngFor="let item of coursesItems" [item]="item"></vp-courses-list-item>
     <div class="courses-list-empty" *ngIf="coursesItems == undefined || coursesItems.length == 0">NO DATA. FEEL FREE TO ADD NEW COURSE</div>
 </div>

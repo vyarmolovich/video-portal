@@ -1,36 +1,38 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faUser} from '@fortawesome/free-solid-svg-icons';
 import { faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { COURSES_PATH } from 'src/app/app-routing.module';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../user-model';
+import { selectAuthState, State } from 'src/app/+state/app.state';
+import { Store } from '@ngrx/store';
+import { LogOut } from 'src/app/+state/actions/auth.actions';
 
 @Component({
   selector: 'vp-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   public faUser = faUser;
   public faSignOutAlt = faSignOutAlt;
   public faSignInAlt = faSignInAlt;
 
-  public userLogin = '';
+  public user: User;
+  public isAuth: boolean;
 
-  subscription: Subscription;
+  state: Observable<any>;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  ngOnInit() {
-    this.subscription = this.authService.getUserInfo().subscribe(
-        (user: User) => this.userLogin = user.login
-    );
+  constructor(private store: Store<State>, private router: Router) { 
+    this.state = this.store.select(selectAuthState);
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnInit() {
+    this.state.subscribe((state) => {
+      this.user = state.user;
+      this.isAuth = state.isAuthenticated;
+    });
   }
 
   login() {
@@ -38,15 +40,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(new LogOut());
     this.router.navigate([COURSES_PATH.login]);
   }
 
-  isAuthenticated(): Observable<boolean>  {
-    return this.authService.isAuthenticated();
-  }
-
-  getUserName(): Observable<User> {
-    return this.authService.getUserInfo();
+  isAuthenticated()  {
+    return this.isAuth;
   }
 }
