@@ -1,0 +1,12 @@
+<ng-container [formGroup]="durationForm">
+    <div *ngIf="!duration?.valid && (duration?.dirty ||duration?.touched)" class="error">
+        <div *ngIf="duration.errors.required">
+            *required
+        </div> 
+    </div>
+    <input formControlName="duration" placeholder="&nbsp;&nbsp;minutes"/>
+
+    <div class="duration-formatted">
+        {{formatedDuration}}
+    </div>
+</ng-container>

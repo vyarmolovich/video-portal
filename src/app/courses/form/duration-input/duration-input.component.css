@@ -1,0 +1,30 @@
+input {
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px #d9dbe3;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 1.71;
+    letter-spacing: 0.22px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding-left: 2px;
+    padding-top: 2px;
+}
+
+.duration-formatted {
+    float: right;
+    margin-top: 16px;
+    margin-right: -100px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+    float: right;
+}
+
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}
