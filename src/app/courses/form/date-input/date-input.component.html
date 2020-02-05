@@ -1,0 +1,9 @@
+<ng-container [formGroup]="dateForm">
+    <div *ngIf="!date?.valid && (date?.dirty ||date?.touched)" class="error">
+        <div *ngIf="date.errors.required">
+            *required
+        </div> 
+    </div>
+    <input formControlName="date" placeholder="&nbsp;&nbsp;Text input"/>
+    <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
+</ng-container>

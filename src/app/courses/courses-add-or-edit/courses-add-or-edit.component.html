@@ -2,40 +2,47 @@
 
      <div class="add-or-edit">
         <div class="wrapper">
-            <form action="" method="get">
+            <form [formGroup]="coursesForm" (ngSubmit)="onSubmit()">
                 <div class="header">New course</div>
                 <div class="title">
                     Title:
-                    <div class="required">*required</div>
-                    <input name="title" [ngModel]="(item$ | async)?.title" (ngModelChange)="item$.title=$event" placeholder="&nbsp;&nbsp;Text input"/>
+                    <div *ngIf="!title?.valid && (title?.dirty || title?.touched)" class="error">
+                        <div *ngIf="title.errors.required">
+                            *required
+                        </div> 
+                        <div *ngIf="title.errors.maxlength"> 
+                            *max 50 char's long
+                        </div>	
+                    </div>	
+                    <input formControlName="title" placeholder="&nbsp;&nbsp;Text input"/>
                 </div>
                 <div class="description">
                     Description:
-                    <div class="required">*required</div>
-                    <textarea name="description" rows="4" cols="50" [ngModel]="(item$ | async)?.description" (ngModelChange)="item$.description=$event" placeholder="&nbsp;Add description"></textarea>
+                    <div *ngIf="!description?.valid && (description?.dirty || description?.touched)" class="error">
+                        <div *ngIf="description.errors.required">
+                            *required
+                        </div> 
+                        <div *ngIf="description.errors.maxlength"> 
+                            *max 50 char's long
+                        </div>	
+                    </div>	
+                    <textarea formControlName="description" rows="4" cols="50" placeholder="&nbsp;Add description"></textarea>
                 </div>
                 <div class="duration">
                     Duration:
-                    <div class="required">*required</div>
-                    <input name="duration" [ngModel]="(item$ | async)?.duration" (ngModelChange)="item$.duration=$event" placeholder="&nbsp;&nbsp;minutes"/>
-                </div>
-                <div class="duration-formatted">
-                    {{(item$ | async)?.duration | duration}}
+                    <vp-duration-input formControlName="duration"></vp-duration-input>
                 </div>
                 <div class="date">
                     Date:
-                    <div class="required">*required</div>
-                    <input name="date" [ngModel]="(item$ | async)?.creationDate | date: 'd MMM, y'" (ngModelChange)="item$.creationDate=$event" placeholder="&nbsp;&nbsp;mm-dd-yyyy"/>
-                    <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
+                    <vp-date-input formControlName="creationDate"></vp-date-input>
                 </div>
                 <div class="authors">
                     Authors:
-                    <div class="required">*required</div>
-                    <input name="authors" [ngModel]="(item$ | async)?.authors" (ngModelChange)="item$.authors=$event" placeholder="&nbsp;&nbsp;Start typing"/>
+                    <vp-authors-input formControlName="authors"></vp-authors-input>
                 </div>        
                 <div class="actions">
                     <button (click)="cancel()" type="button" class="cancel">Cancel</button>
-                    <button (click)="save()" type="submit" class="save">Save</button>
+                    <button  type="submit" class="save">Save</button>
                 </div>
             </form>
         </div>

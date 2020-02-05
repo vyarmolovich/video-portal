@@ -31,7 +31,8 @@
 }
 
 .add-or-edit .title,
-.add-or-edit .description {
+.add-or-edit .description,
+.add-or-edit .authors {
     width: 683px;
 } 
 
@@ -44,10 +45,6 @@
     float: left;
     margin-top: -40px;
     margin-left: 170px;
-}
-
-.add-or-edit .authors {
-    width: 312px;
 }
 
 .add-or-edit input {
@@ -69,21 +66,15 @@
     padding-top: 2px;
 }
 
-fa-icon { 
-    top: 12px; 
-    left: 14px; 
-    color: #9ca3aa;
-    float: right;
-    margin-top: -54px;
-    position: relative;
-    margin-right: 24px;
-}
-
-.add-or-edit .required {
-    color: #6c7283;
+.add-or-edit .error {
+    color: red;
     font-size: 12px;
     margin-top: 2px;
     float: right;
+}
+
+.add-or-edit .ng-touched.ng-invalid {
+    border-color: red !important;
 }
 
 .add-or-edit .actions {

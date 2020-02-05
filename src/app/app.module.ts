@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './+state/effects/auth.effects';
 import { CoursesEffects } from './+state/effects/courses.effects';
+import { AuthorsEffects } from './+state/effects/authors.effects';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { CoursesEffects } from './+state/effects/courses.effects';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AuthEffects, CoursesEffects])
+    EffectsModule.forRoot([AuthEffects, CoursesEffects, AuthorsEffects])
   ],
   providers: [
     {

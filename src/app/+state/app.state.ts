@@ -3,19 +3,23 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as auth from './reducers/auth.reducer';
 import * as courses from './reducers/courses.reducer';
+import * as authors from './reducers/authors.reducer';
 
 export interface State {
   authState: auth.AuthState;
   coursesState: courses.CoursesState;
+  authorsState: authors.AuthorsState;
 }
 
 export const reducers = {
   auth: auth.reducer,
-  courses: courses.reducer
+  courses: courses.reducer,
+  authors: authors.reducer
 };
 
 export const selectAuthState = createFeatureSelector<auth.AuthState>('auth');
 export const selectCoursesState = createFeatureSelector<courses.CoursesState>('courses');
+export const selectAuthorsState = createFeatureSelector<authors.AuthorsState>('authors');
 
 export const getCourses = createSelector(selectCoursesState, courses.getCourses);
 export const getFilter = createSelector(selectCoursesState, courses.getFilter);

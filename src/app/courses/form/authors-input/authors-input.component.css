@@ -1,0 +1,62 @@
+.full-width {
+    width: 100%;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+    float: right;
+}
+
+.ng-touched.ng-invalid {
+    border-color: red !important;
+}
+
+.editor-tag {
+    cursor: text;
+    width: 100%;
+    border-radius: 3px;
+    border: solid 1px #d9dbe3;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 2;
+    letter-spacing: 0.22px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding-left: 2px;
+}
+
+.remove-tag {
+    font-size: 16px;
+    color: #a4a9b7;
+    font-weight: bold;
+}
+
+.editor-tag .tag-item {
+      line-height: 20px;
+      border-radius: 3px;
+      height: 20px;
+      font-size: 12px;
+      display: inline-block;
+      background:#f2f3f7;
+      padding-left: 5px;
+}  
+
+.editor-tag .remove-tag {
+        padding-right: 5px;
+        cursor: pointer;
+}
+
+  
+.editor-tag .tag-item:not(:first-child) {
+      margin-left: 5px;
+}
+
+input {
+    margin: 0;
+    padding-left: 5px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}

@@ -3,6 +3,7 @@ import { CoursesListItem } from '../courses/courses-list-item/courses-list-item-
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
+import { CoursesAuthor } from '../courses/courses-list-item/courses-author-model';
 
 
 interface ICourse {
@@ -11,14 +12,14 @@ interface ICourse {
   description: string;
   isTopRated: boolean;
   date: Date;
-  authors: [
-    // {
-    //   "id": 1370,
-    //   "name": "Polly",
-    //   "lastName": "Sosa"
-    // }
-  ];
+  authors: IAuthor[];
   length: number;
+}
+
+interface IAuthor {
+  id: number;
+  name: string;
+  lastName: string;
 }
 
 const BASE_URL = 'http://localhost:3004/courses';
@@ -44,7 +45,8 @@ export class CoursesService {
               duration: item.length,
               description: item.description,
               topRated: item.isTopRated,
-              authors: item.authors
+              authors: item.authors.map((author: IAuthor) => { 
+                  return { id: author.id, name: author.name, lastName: author.lastName }})
             }
           })
         }));
@@ -56,9 +58,11 @@ export class CoursesService {
         {
           id: item.id, 
           name: item.title,
+          description: item.description,
           date: item.creationDate,
           length: item.duration,
-          authors: item.authors,
+          authors: item.authors.map((author: CoursesAuthor) => { 
+            return { id: author.id, name: author.name, lastName: author.lastName }}),
           isTopRated: item.topRated
         })
       .pipe(
@@ -70,7 +74,8 @@ export class CoursesService {
             duration: item.length,
             description: item.description,
             topRated: item.isTopRated,
-            authors: item.authors
+            authors: item.authors.map((author: IAuthor) => { 
+              return { id: author.id, name: author.name, lastName: author.lastName }})
           }
         }),
         catchError(this.handleError));
@@ -87,7 +92,8 @@ export class CoursesService {
             duration: item.length,
             description: item.description,
             topRated: item.isTopRated,
-            authors: item.authors
+            authors: item.authors.map((author: IAuthor) => { 
+              return { id: author.id, name: author.name, lastName: author.lastName }})
         }
       }));
   }
@@ -98,9 +104,11 @@ export class CoursesService {
         {
           id: item.id, 
           name: item.title,
+          description: item.description,
           date: item.creationDate,
           length: item.duration,
-          authors: item.authors,
+          authors: item.authors.map((author: CoursesAuthor) => { 
+            return { id: author.id, name: author.name, lastName: author.lastName }}),
           isTopRated: item.topRated
         })
       .pipe(
@@ -112,7 +120,8 @@ export class CoursesService {
             duration: item.length,
             description: item.description,
             topRated: item.isTopRated,
-            authors: item.authors
+            authors: item.authors.map((author: IAuthor) => { 
+              return { id: author.id, name: author.name, lastName: author.lastName }})
           }
         }),
         catchError(this.handleError));
