@@ -36,25 +36,10 @@
                     Date:
                     <vp-date-input formControlName="creationDate"></vp-date-input>
                 </div>
-                <!-- <div class="duration">
-                    Duration:
-                    <div class="required">*required</div>
-                    <input name="duration" [ngModel]="(item$ | async)?.duration" (ngModelChange)="item$.duration=$event" placeholder="&nbsp;&nbsp;minutes"/>
-                </div>
-                <div class="duration-formatted">
-                    {{(item$ | async)?.duration | duration}}
-                </div>
-                <div class="date">
-                    Date:
-                    <div class="required">*required</div>
-                    <input name="date" [ngModel]="(item$ | async)?.creationDate | date: 'd MMM, y'" (ngModelChange)="item$.creationDate=$event" placeholder="&nbsp;&nbsp;mm-dd-yyyy"/>
-                    <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
-                </div>
                 <div class="authors">
                     Authors:
-                    <div class="required">*required</div>
-                    <input name="authors" [ngModel]="(item$ | async)?.authors" (ngModelChange)="item$.authors=$event" placeholder="&nbsp;&nbsp;Start typing"/>
-                </div>         -->
+                    <vp-authors-input formControlName="authors"></vp-authors-input>
+                </div>        
                 <div class="actions">
                     <button (click)="cancel()" type="button" class="cancel">Cancel</button>
                     <button [disabled]="!coursesForm.valid" type="submit" class="save">Save</button>

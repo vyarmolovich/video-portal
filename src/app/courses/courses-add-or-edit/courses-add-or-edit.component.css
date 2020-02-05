@@ -31,7 +31,8 @@
 }
 
 .add-or-edit .title,
-.add-or-edit .description {
+.add-or-edit .description,
+.add-or-edit .authors {
     width: 683px;
 } 
 
@@ -44,10 +45,6 @@
     float: left;
     margin-top: -40px;
     margin-left: 170px;
-}
-
-.add-or-edit .authors {
-    width: 312px;
 }
 
 .add-or-edit input {

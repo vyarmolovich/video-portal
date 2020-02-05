@@ -18,7 +18,8 @@ export class CoursesAddOrEditComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(50)]],
     description: ['', [Validators.required, Validators.maxLength(500)]],
     creationDate: ['', [Validators.required, Validators.pattern(/^[0-9]{2}[\/][0-9]{2}[\/][0-9]{4}$/g)]],
-    duration: ['', [Validators.required, Validators.pattern(/^[0-9.]+$/g)]]
+    duration: ['', [Validators.required, Validators.pattern(/^[0-9.]+$/g)]],
+    authors: ['', [Validators.required]]
   });
 
   public item$: Observable<CoursesListItem>;
@@ -57,7 +58,8 @@ export class CoursesAddOrEditComponent implements OnInit {
               title: item.title,
               description: item.description,
               creationDate: item.creationDate,
-              duration: item.duration
+              duration: item.duration,
+              authors: item.authors
           });
         }
       });

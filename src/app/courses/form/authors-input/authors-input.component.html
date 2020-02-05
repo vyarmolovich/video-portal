@@ -1,1 +1,14 @@
-<p>authors-input works!</p>
+<ng-container [formGroup]="authorsForm">
+    <div *ngIf="!authors?.valid && (authors?.dirty ||authors?.touched)" class="error">
+        <div *ngIf="authors.errors.required">
+            *required
+        </div> 
+    </div>
+    <div class="editor-tag" (click)="focusTagInput()">
+        <span class="tag-item" *ngFor="let tag of tags">
+            {{tag}}
+            <span class="remove-tag" (click)="removeTag(tag)">X</span>
+        </span>
+        <input #tagInput class="input-tag" formControlName="authors" (keyup)="onKeyUp($event)"placeholder="&nbsp;&nbsp;Start typing"/>
+    </div>
+</ng-container>

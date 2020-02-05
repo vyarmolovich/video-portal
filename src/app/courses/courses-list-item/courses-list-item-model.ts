@@ -1,3 +1,5 @@
+import { CoursesAuthor } from './courses-author-model';
+
 export interface CoursesListItem {
     id: number;
     title: string;
@@ -5,5 +7,5 @@ export interface CoursesListItem {
     duration: number;
     description: string;
     topRated: boolean;
-    authors: [];
+    authors: CoursesAuthor[];
 }
