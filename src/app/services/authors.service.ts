@@ -5,8 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 interface IAuthor {
-  id: string;
+  id: number;
   name: string;
+  lastName: string;
 }
 
 const BASE_URL = 'http://localhost:3004/authors';
@@ -18,11 +19,20 @@ export class AuthorsService {
 
   constructor( private http: HttpClient) { }
 
-  getList(filter: string): Observable</*CoursesAuthor*/IAuthor[]> {
+  getList(filter: string): Observable<CoursesAuthor[]> {
       return this.http
         .get<IAuthor[]>(
           BASE_URL,  
-          filter == null ? {} :{ params : { textFragment: filter } });
-
+          filter == null ? {} :{ params : { textFragment: filter } })
+        .pipe(map((items: IAuthor[]) => {
+          return items.map((item: IAuthor) => {
+            return {
+              id: item.id,
+              name: item.name,
+              lastName: item.lastName
+            }
+          })
+        })
+      );
   }
 }

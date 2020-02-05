@@ -58,6 +58,7 @@ export class CoursesService {
         {
           id: item.id, 
           name: item.title,
+          description: item.description,
           date: item.creationDate,
           length: item.duration,
           authors: item.authors.map((author: CoursesAuthor) => { 
@@ -103,6 +104,7 @@ export class CoursesService {
         {
           id: item.id, 
           name: item.title,
+          description: item.description,
           date: item.creationDate,
           length: item.duration,
           authors: item.authors.map((author: CoursesAuthor) => { 

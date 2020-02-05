@@ -12,7 +12,7 @@ import { FilterByTitlePipe } from './courses-list-item/filter-by-title.pipe';
 import { CoursesComponent } from './courses/courses.component';
 import { DurationPipe } from './courses-list-item/duration.pipe';
 import { CoreModule } from '../core/core.module';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { CoursesDeleteDialogComponent } from './courses-delete-dialog/courses-delete-dialog.component';
 import { CoursesAddOrEditComponent } from './courses-add-or-edit/courses-add-or-edit.component';
 import { DateInputComponent } from './form/date-input/date-input.component';
@@ -42,7 +42,9 @@ import { AuthorsInputComponent } from './form/authors-input/authors-input.compon
     FontAwesomeModule,
     FormsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   exports: [
     CoursesComponent

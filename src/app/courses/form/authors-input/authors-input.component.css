@@ -1,3 +1,6 @@
+.full-width {
+    width: 100%;
+}
 
 .error {
     color: red;
@@ -22,6 +25,12 @@
     margin-top: 8px;
     margin-bottom: 12px;
     padding-left: 2px;
+}
+
+.remove-tag {
+    font-size: 16px;
+    color: #a4a9b7;
+    font-weight: bold;
 }
 
 .editor-tag .tag-item {

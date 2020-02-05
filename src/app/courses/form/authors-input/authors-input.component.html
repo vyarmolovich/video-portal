@@ -4,11 +4,16 @@
             *required
         </div> 
     </div>
+
     <div class="editor-tag" (click)="focusTagInput()">
-        <span class="tag-item" *ngFor="let tag of tags">
-            {{tag}}
-            <span class="remove-tag" (click)="removeTag(tag)">X</span>
+        <span class="tag-item" *ngFor="let tag of authorsResult$ | async">
+            {{tag.name}} {{tag.lastName}}&nbsp;<span class="remove-tag" (click)="removeTag(tag)">x</span>
         </span>
-        <input #tagInput class="input-tag" formControlName="authors" (keyup)="onKeyUp($event)"placeholder="&nbsp;&nbsp;Start typing"/>
+        <input #tagInput class="input-tag" formControlName="authors" [matAutocomplete]="auto" (keyup)="onKeyUp($event)"placeholder="&nbsp;&nbsp;Start typing"/>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option.name">
+                {{option.name}} {{option.lastName}}
+            </mat-option>
+        </mat-autocomplete>
     </div>
 </ng-container>

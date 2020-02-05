@@ -4,7 +4,7 @@ import { CoursesListItem } from '../courses-list-item/courses-list-item-model';
 import { Observable, of } from 'rxjs';
 import { State, getSelected } from 'src/app/+state/app.state';
 import { Store } from '@ngrx/store';
-import { GetOne } from 'src/app/+state/actions/courses.actions';
+import { GetOne, Update, Create } from 'src/app/+state/actions/courses.actions';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -22,7 +22,7 @@ export class CoursesAddOrEditComponent implements OnInit {
     authors: ['', [Validators.required]]
   });
 
-  public item$: Observable<CoursesListItem>;
+  item$: Observable<CoursesListItem>;
 
   itemId: number;
   
@@ -74,20 +74,14 @@ export class CoursesAddOrEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.coursesForm.value);
+    if (this.itemId != null) {
+      this.store.dispatch(new Update(this.coursesForm.value))
+    } else {
+      this.store.dispatch(new Create(this.coursesForm.value))
+    }
+
+    this.router.navigate(['/']);
   }
-
-
-  // save() {
-  //   this.item$.subscribe((item) => {
-  //     if (this.itemId != null) {
-  //       this.store.dispatch(new Update(item))
-  //     } else {
-  //       this.store.dispatch(new Create(item))
-  //     }
-  //   });
-  //   this.router.navigate(['/']);
-  // }
 
   cancel() {
     this.router.navigate(['/']);

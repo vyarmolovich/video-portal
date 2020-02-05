@@ -40,8 +40,6 @@ export class DurationInputComponent implements OnInit, ControlValueAccessor, Val
     });
   }
 
-  onChanged: any = () => {}
-
   onTouched: any = () => {}
 
   writeValue(value) {
@@ -52,7 +50,7 @@ export class DurationInputComponent implements OnInit, ControlValueAccessor, Val
   }
 
   registerOnChange(fn: any) {
-    this.onChanged = fn;
+    this.durationForm.get('duration').valueChanges.subscribe(fn);
   }
 
   registerOnTouched(fn: any) {

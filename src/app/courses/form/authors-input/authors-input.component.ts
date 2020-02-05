@@ -1,6 +1,12 @@
 import { Component, OnInit, forwardRef, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, Validator, FormBuilder, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { CoursesAuthor } from '../../courses-list-item/courses-author-model';
+import { State, selectAuthorsState } from 'src/app/+state/app.state';
+import { Store } from '@ngrx/store';
+import { AuthorsState } from 'src/app/+state/reducers/authors.reducer';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Search } from 'src/app/+state/actions/authors.actions';
+import { filter, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'vp-authors-input',
@@ -26,19 +32,39 @@ export class AuthorsInputComponent implements OnInit, ControlValueAccessor, Vali
   authorsForm = this.fb.group({
     authors: ['']
   });
-  
-  tags: string[] = [];
+
+  authorsState$: Observable<AuthorsState>;
+
+  authorsResult$: BehaviorSubject<CoursesAuthor[]> = new BehaviorSubject <CoursesAuthor[]>([]);
 
   control: AbstractControl;
 
+  public options: CoursesAuthor[];
+
   public disabled: boolean;
 
-  public formatedDuration: string = '';  
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store<State>) {
+    this.authorsState$ = this.store.select(selectAuthorsState);
+  }
 
   ngOnInit(): void {
+    this.authorsState$.subscribe((state) => {
+      if (state.authors.length == 1) {
+        this.addTag(state.authors[0]);
+        this.authorsForm.get('authors').setValue('');
+        this.options = [];
+      } else {
+        this.options = state.authors;
+      }
+    })
 
+    this.authorsForm.get('authors').valueChanges
+      .pipe(
+        filter((s: string) => s.length > 1),
+        debounceTime(400))
+      .subscribe(value => {
+        this.store.dispatch(new Search((value)));  
+      });
   }
 
   focusTagInput(): void {
@@ -46,50 +72,42 @@ export class AuthorsInputComponent implements OnInit, ControlValueAccessor, Vali
   }
 
   onKeyUp(event: KeyboardEvent): void {
-    const inputValue: string = this.authorsForm.controls.authors.value;
+    const inputValue: string = this.authorsForm.get('authors').value;
     if (event.code === 'Backspace' && !inputValue) {
-      this.removeTag();
+      // TODO: uncoment if tag shold be removed by backspace
+      // this.removeTag();
       return;
-    } else {
-      if (event.code === 'Comma' || event.code === 'Space') {
-        this.addTag(inputValue);
-        this.authorsForm.controls.tag.setValue('');
-      }
     }
   }
 
-  addTag(tag: string): void {
-    if (tag[tag.length - 1] === ',' || tag[tag.length - 1] === ' ') {
-      tag = tag.slice(0, -1);
-    }
-    if (tag.length > 0 && !this.tags.find(t => t == tag)) {
-      this.tags.push(tag);
-    }
+  removeTag(author?:  CoursesAuthor): void {
+    let index = -1;
+    if (!!author) {
+      index = this.authorsResult$.value.indexOf(author);
+    } 
+
+    this.authorsResult$.value.splice(index, 1);
+    this.authorsResult$.next(this.authorsResult$.value);
   }
 
-  removeTag(tag?: string): void {
-    if (!!tag) {
-      this.tags.splice(this.tags.indexOf(tag), 1);
-    } else {
-      this.tags.splice(-1);
+  addTag(author: CoursesAuthor) {
+    let tags = this.authorsResult$.value;
+
+    if (!tags.find(t => t == author)) {
+      this.authorsResult$.next(this.authorsResult$.value.concat(author));
     }
   }
-
-
-  onChanged: any = () => {}
 
   onTouched: any = () => {}
 
   writeValue(authors: CoursesAuthor[]) {
     if (authors) {
-      this.tags = authors.map((author) => {
-             return author.name + ' ' + author.lastName;
-          });
+      this.authorsResult$.next(this.authorsResult$.value.concat(authors));
     }
   }
 
   registerOnChange(fn: any) {
-    this.onChanged = fn;
+    this.authorsResult$.subscribe(fn);
   }
 
   registerOnTouched(fn: any) {

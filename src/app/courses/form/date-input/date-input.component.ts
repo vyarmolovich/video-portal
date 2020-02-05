@@ -34,8 +34,6 @@ export class DateInputComponent implements ControlValueAccessor, Validator {
 
   constructor(private fb: FormBuilder, private datePipe: DatePipe) {}
 
-  onChanged: any = () => {}
-
   onTouched: any = () => {}
 
   writeValue(value) {
@@ -43,7 +41,7 @@ export class DateInputComponent implements ControlValueAccessor, Validator {
   }
 
   registerOnChange(fn: any) {
-    this.onChanged = fn;
+    this.dateForm.get('date').valueChanges.subscribe(fn);
   }
 
   registerOnTouched(fn: any) {
